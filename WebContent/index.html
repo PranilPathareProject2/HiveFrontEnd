@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="hiveapp">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hive</title>
+<!-- Latest compiled and minified CSS 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+Latest Font Awesome CSS 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/CustomCSS.css">
+<link rel="stylesheet" href="resources/css/font-awesome.min.css">
+</head>
+<body>
+	<!-- <p>Kolambika Mata, Swami Samarth, Lalbaugcha Raja cha vijay asso</p> -->
+	<div class="container">
+		<!-- Header starts -->
+		<header>
+			<div class="row">
+				<div class="col-xs-6">
+					<img src="resources/images/logo.png" height="150px" width="150px" />
+				</div>
+				<div class="col-xs-6">
+					<ul class="nav navbar-nav pull-right topnavbar">
+						<li><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<!-- Header ends -->
+		<!-- Navbar starts -->
+		<nav class="navbar navbar-inverse">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbartoggle">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navbartoggle">
+			<ul class="nav navbar-nav">
+				<li><a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">Blog <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Create Blog</a></li>
+						<li><a href="#">View Blogs</a></li>
+					</ul>
+				</li>
+				<li><a href="#/aboutus">About Us</a></li>
+				<li><a href="#/contactus">Contact Us</a></li>
+			</ul>
+			</div>
+		</nav>
+		<!-- Navbar ends -->
+		<!-- External Page Starts -->
+		<div ng-view></div>
+		<!-- External Page Ends -->
+		<!-- Footer starts -->
+		<footer>
+			<div class="row">
+				<div class="container footerstyle">
+					<div class="col-xs-6">
+						<p>Copyright &copy; 2016 Hive. All Rights Reserved.</p>
+					</div>
+					<div class="col-xs-6">
+						<div class="nav navbar-nav navbar-right">
+							<p style="padding-left: 16px;">Follow us on:&nbsp;</p>
+							<span style="padding-left: 16px;"></span>
+							<a href="https://www.facebook.com/hivepranil"><i class="fa fa-facebook-square fa-2x"></i></a>
+	        				<a href="https://www.twitter.com/hivepranil"><i class="fa fa-twitter-square fa-2x"></i></a>
+	        				<a href="https://www.linkedin.com/hivepranil"><i class="fa fa-linkedin-square fa-2x"></i></a>
+			        		<a href="https://plus.google.com/hivepranil"><i class="fa fa-google-plus-square fa-2x"></i></a>
+			        	</div>	
+					</div>
+				</div>	
+			</div>
+		</footer>
+		<!-- Footer ends -->
+	</div>
+	<!-- Latest compiled and minified jQuery 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	 Latest compiled and minified JavaScript 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+	
+	<!-- Local jQuery file -->
+	<script src="resources/javascript/jquery.min.js"></script>
+	
+	<!-- Local Bootstrap file -->
+	<script src="resources/javascript/bootstrap.min.js"></script>
+	
+	<!-- Local AngularJS file -->
+	<script src="resources/javascript/angular.js"></script>
+	
+	<!-- Local AngularJS Route file -->
+	<script src="resources/javascript/angular-route.js"></script>
+	
+	<!-- Local App file -->
+	<script src="hiveapp.js"></script>
+	
+	<!-- Local Controllers -->
+	<script src="Home/js/HomeController.js"></script>
+</body>
+</html>

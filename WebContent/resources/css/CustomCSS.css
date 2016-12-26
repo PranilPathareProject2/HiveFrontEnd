@@ -1,0 +1,63 @@
+/* For navbar color */
+.navbar-inverse {
+  background-color: #FFE1B2;
+  border-color: #FFA10E;
+}
+
+/* For navbar elements */
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFA10E;
+}
+
+/* For navbar elements hover and focus */
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #FFE1B2;
+  background-color: #FFA10E;
+}
+
+/* for footer styling */
+.footerstyle {
+	color: #FFA10E;
+	background-color: #FFE1B2;
+}
+
+/* For jumbotron */
+/* .jumbotron {
+  color: #FFA10E;
+  background-color: #FFE1B2;
+} */
+
+/* for footer icons */
+.footerstyle i {
+	color: #FFA10E;
+}
+
+/* For header navbar */
+.navbar-nav > li > a {
+  color: #FFA10E;
+}
+
+/* For header navbar hover and focus */
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  color: #FFE1B2;
+  background-color: #FFA10E;
+}
+
+/* For header navbar after clicked */
+.topnavbar > li > a:focus:not(:hover) {
+  color: #FFA10E;
+  background-color: #FFFFFF;
+}
+
+/* For modal header */
+.modal-header {
+	color: #FFA10E;
+  	background-color: #FFE1B2;
+}
+
+/* For modal footer */
+.modal-footer {
+  	background-color: #F0F0F0;
+}
