@@ -24,6 +24,46 @@ app.config(function($routeProvider){
 		templateUrl: 'Home/views/signup.html'
 	})
 	
+	.when('/createblog',{
+		templateUrl: 'Blog/views/create_blog.html'
+	})
+	
+	.when('/viewblogs',{
+		templateUrl: 'Blog/views/view_blogs.html'
+	})
+	
+	.when('/createforum',{
+		templateUrl: 'Chat Forum/views/create_forum.html'
+	})
+	
+	.when('/viewforums',{
+		templateUrl: 'Chat Forum/views/view_forums.html'
+	})
+	
+	.when('/friends',{
+		templateUrl: 'Friend/views/my_friends.html'
+	})
+	
+	.when('/onlinefriends',{
+		templateUrl: 'Friend/views/online_friends.html'
+	})
+	
+	.when('/viewjobs',{
+		templateUrl: 'Job/views/view_jobs.html'
+	})
+	
+	.when('/appliedjobs',{
+		templateUrl: 'Job/views/applied_jobs.html'
+	})
+	
+	.when('/viewbulletins',{
+		templateUrl: 'Bulletin/views/view_bulletins.html'
+	})
+	
+	.when('/viewevents',{
+		templateUrl: 'Event/views/view_events.html'
+	})
+	
 	.otherwise({
 		redirectTo: '/'
 	});
