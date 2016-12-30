@@ -61,3 +61,43 @@
 .modal-footer {
   	background-color: #F0F0F0;
 }
+
+/* For dropdown list elements */
+.dropdown-menu > li > a {
+ 	color: #FFA10E;
+  	background-color: #FFE1B2;
+}
+
+/* For dropdown list elements hover and focus */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #FFE1B2;
+  background-color: #FFA10E;
+}
+
+/* for dropdown */
+.dropdown-menu {
+  	background-color: #FFE1B2;	
+}
+
+/* For navbar toggle button */
+.navbar-toggle {
+  background-color: #FFA10E;
+}
+
+/* For dropdown toggle background color*/
+.open .dropdown-toggle {
+	background-color: #FFA10E !important;
+	color: #FFE1B2 !important;
+}
+
+.dropdown:not(.open) > .dropdown-toggle:focus:not(:hover) {
+  background-color: #D80000;
+}
+
+/* To center footer navbar */
+/* .centernav {
+	text-align: center;
+	display:inline-block;
+    float: none;
+} */
