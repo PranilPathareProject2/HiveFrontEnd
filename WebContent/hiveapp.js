@@ -25,11 +25,13 @@ app.config(function($routeProvider){
 	})
 	
 	.when('/createblog',{
-		templateUrl: 'Blog/views/create_blog.html'
+		templateUrl: 'Blog/views/create_blog.html',
+		controller: 'BlogController'	
 	})
 	
 	.when('/viewblogs',{
-		templateUrl: 'Blog/views/view_blogs.html'
+		templateUrl: 'Blog/views/view_blogs.html',
+		controller: 'BlogController'
 	})
 	
 	.when('/createforum',{
