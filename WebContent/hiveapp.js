@@ -12,16 +12,18 @@ app.config(function($routeProvider){
 		templateUrl: 'Home/views/aboutus.html'
 	})
 	
-	.when('/login',{
-		templateUrl: 'Home/views/login.html'
-	})
-	
 	.when('/contactus',{
 		templateUrl: 'Home/views/contactus.html'
 	})
 	
+	.when('/login',{
+		templateUrl: 'User/views/login.html',
+		controller: 'UserController'
+	})
+	
 	.when('/signup',{
-		templateUrl: 'Home/views/signup.html'
+		templateUrl: 'User/views/signup.html',
+		controller: 'UserController'
 	})
 	
 	.when('/createblog',{

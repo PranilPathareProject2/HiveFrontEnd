@@ -1,0 +1,151 @@
+<div class="container">
+	<div class="row" ng-controller="UserController as uctrl">
+		<div class="col-sm-6 col-sm-offset-3 jumbotron">
+			<h2 class="text-center">Sign Up</h2>
+			<!-- Sign up form starts -->
+			<form name="signupform" novalidate>
+				<div class="form-group">
+					<label for="fname">First Name:</label>
+					<input type="text" id="fname" name="firstname" class="form-control" placeholder="Enter First Name" required="required" pattern="^[A-Za-z]*$" ng-model="uctrl.user.firstname" />
+					<span style="color: red;" ng-show="signupform.firstname.$dirty && signupform.firstname.$invalid">
+						<span ng-show="signupform.firstname.$error.required">First name is required</span>
+						<span ng-show="signupform.firstname.$error.pattern">Invalid first name</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="lname">Last Name:</label>
+					<input type="text" id="lname" name="lastname" class="form-control" placeholder="Enter Last Name" required="required" pattern="^[A-Za-z]*$" ng-model="uctrl.user.lastname" />
+					<span style="color: red;" ng-show="signupform.lastname.$dirty && signupform.lastname.$invalid">
+						<span ng-show="signupform.lastname.$error.required">Last name is required</span>
+						<span ng-show="signupform.firstname.$error.pattern">Invalid last name </span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="usrname">Username:</label>
+					<input type="text" id="usrname" name="username" class="form-control" placeholder="Enter Registered User Name" required="required" ng-model="uctrl.user.username" />
+					<span style="color: red;" ng-show="signupform.username.$dirty && signupform.username.$invalid">
+						<span ng-show="signupform.username.$error.required">Username is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="email">Email ID:</label>
+					<input type="email" id="email" name="emailid" class="form-control" placeholder="Enter Email ID" required="required" ng-model="uctrl.user.email_id" />
+					<span style="color: red;" ng-show="signupform.emailid.$dirty && signupform.emailid.$invalid">
+						<span ng-show="signupform.emailid.$error.required">Email ID is required</span>
+						<span ng-show="signupform.emailid.$error.email">Invalid Email ID</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="pass">Password:</label> 
+					<input type="password" id="pass" name="password" placeholder="Enter Password" class="form-control" required="required" ng-model="uctrl.user.password" />
+					<span style="color: red;" ng-show="signupform.password.$dirty && signupform.password.$invalid">
+						<span ng-show="signupform.password.$error.required">Password is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="cpass">Confirm Password:</label> 
+					<input type="password" id="cpass" name="confirmpassword" placeholder="Re-Enter Password" class="form-control" required="required" />
+					<span style="color: red;" ng-show="signupform.confirmpassword.$dirty && signupform.confirmpassword.$invalid">
+						<span ng-show="signupform.confirmpassword.$error.required">Confirm password is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="address">Address:</label> 
+					<textarea id="address" rows="3" name="address" placeholder="Enter Address" class="form-control" required="required" ng-model="uctrl.user.address"></textarea>
+					<span style="color: red;" ng-show="signupform.address.$dirty && signupform.address.$invalid">
+						<span ng-show="signupform.address.$error.required">Address is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="state">State:</label> 
+					<input type="text" id="state" name="state" placeholder="Enter State" class="form-control" required="required" ng-model="uctrl.user.state" />
+					<span style="color: red;" ng-show="signupform.state.$dirty && signupform.state.$invalid">
+						<span ng-show="signupform.state.$error.required">State is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="city">City:</label> 
+					<input type="text" id="city" name="city" placeholder="Enter City" class="form-control" required="required" ng-model="uctrl.user.city" />
+					<span style="color: red;" ng-show="signupform.city.$dirty && signupform.city.$invalid">
+						<span ng-show="signupform.city.$error.required">City is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="pincode">Pincode:</label> 
+					<input type="text" id="pincode" name="pincode" placeholder="Enter Pincode" class="form-control" required="required" ng-model="uctrl.user.pincode" />
+					<span style="color: red;" ng-show="signupform.pincode.$dirty && signupform.pincode.$invalid">
+						<span ng-show="signupform.pincode.$error.required">Pincode is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="dob">Date Of Birth:</label> 
+					<input type="date" id="dob" name="dob" placeholder="Enter Date Of Birth" class="form-control" required="required" ng-model="uctrl.user.date_of_birth" />
+					<span style="color: red;" ng-show="signupform.dob.$dirty && signupform.dob.$invalid">
+						<span ng-show="signupform.dob.$error.required">Date Of Birth is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="cnumber">Contact No.:</label> 
+					<input type="number" id="cnumber" name="contactnumber" placeholder="Enter Contact Number" class="form-control" required="required" ng-model="uctrl.user.contact_no" />
+					<span style="color: red;" ng-show="signupform.cnumber.$dirty && signupform.cnumber.$invalid">
+						<span ng-show="signupform.cnumber.$error.required">Contact No. is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="qual">Qualification:</label> 
+					<input type="text" id="qual" name="qualification" placeholder="Enter Highest Qualification" class="form-control" required="required" ng-model="uctrl.user.qualification" />
+					<span style="color: red;" ng-show="signupform.qualification.$dirty && signupform.qualification.$invalid">
+						<span ng-show="signupform.qualification.$error.required">Qualification is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+					<label for="experience">Experience:</label> 
+					<input type="text" id="experience" name="experience" placeholder="Enter Experience (if any)" class="form-control" ng-model="uctrl.user.experience" />
+				</div>
+				<div class="form-group">
+					<label>Gender:</label><br>
+    				<label><input type="radio" name="gender" ng-model="uctrl.user.gender" value="Male" required="required"> Male</label>
+    				<label><input type="radio" name="gender" ng-model="uctrl.user.gender" value="Female" required="required"> Female</label><br />
+    				<span style="color: red;" ng-show="signupform.gender.$invalid">Gender is required</span>
+				</div>
+				<div class="form-group">
+					<label>User Type:</label><br>
+    				<label><input type="radio" name="role" ng-model="uctrl.user.role" value="Student" required="required"> Student</label>
+    				<label><input type="radio" name="role" ng-model="uctrl.user.role" value="Alumni" required="required"> Alumni</label>
+    				<label><input type="radio" name="role" ng-model="uctrl.user.role" value="Employee" required="required"> Employee</label><br />
+    				<span style="color: red;" ng-show="signupform.role.$invalid">User type is required</span>
+					</span>
+				</div>
+				<div class="form-group">
+    				<label><input type="checkbox" name="privacy"> Accept Privacy Policy</label> <span style="color: red;" ng-show="signupform.privacy.$invalid">Accepting policy required</span> <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#privacypolicy">Read Policy</button>
+				</div>
+				<div style="padding-top: 10px">
+					<input type="submit" ng-submit="" ng-disabled="signupform.$invalid" class="btn btn-primary btn-block">
+				</div>
+			</form>
+			<!-- Sign up form ends -->
+		</div>
+		<button ng-click="uctrl.allUsers()">Get users</button>
+		{{uctrl.users}}
+	</div>
+	<!-- Privacy policy modal start -->
+	<div id="privacypolicy" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title text-center">Privacy Policy</h2>
+				</div>
+				<div class="modal-body">
+					<p>NIIT Hive is committed to safeguarding your privacy online. We recognize your need for reasonable control of personally identifiable information that you share with NIIT Hive.</p> 
+					<p>When you join us, we need to know your name and e-mail address. This will be used only for the service you have sought and would not be under any circumstances passed on for any other commercial purpose. NIIT Hive will not disclose any of your personally identifiable information except when we have your permission or under special circumstances, such as when we believe in good faith that the law requires it.</p> 
+					<p>Although we track the total number of visitors to each of sites in an aggregate form to allow us to update and improve our sites, personally identifiable information is not extracted in this process. Any cookie technology (where our servers deposit special codes on a visitor's computer) will only be used to track non-personal information such as type of browser,operating system, and domain names to improve our visitor's online experience. </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Privacy policy modal end -->
+</div>
