@@ -68,6 +68,11 @@ app.config(function($routeProvider){
 		templateUrl: 'Event/views/view_events.html'
 	})
 	
+	.when('/manageusers',{
+		templateUrl: 'Admin/views/manage_users.html',
+		controller: 'UserController'
+	})
+	
 	.otherwise({
 		redirectTo: '/'
 	});
