@@ -2,6 +2,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 	var self = this;
 	self.user = {"username":"", "firstname":"", "lastname":"", "date_of_birth":"", "email_id":"", "gender":"", "contact_no":"", "address":"", "state":"", "city":"", "pincode":"", "experience":"", "qualification":"", "reason":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
 	self.users = [];
+	self.usercreds = [];
 	
 	self.allUsers = function() {
 		console.log("allUsers method in controller started");
@@ -23,13 +24,15 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			.manageUsers()
 			.then(
 					function(d) {
-						self.users = d;
+						self.usercreds = d;
 					},
 					function(errorresponse) {
 						console.error("Error while fetching users");
 					}
 			);
 	};
+	
+	self.manageUsers();
 	
 	self.addUser = function(user) {
 		console.log("addUser method in controller started");
@@ -62,9 +65,26 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 		UserService
 			.acceptUser(username)
 			.then(
-					self.manageUsers(),
+					function(udata) {
+						self.manageUsers();
+					},
 					function(errorresponse) {
 						console.error("Error while accepting user for management");
+					}
+			);
+	};
+	
+	self.rejectUser = function(username) {
+		console.log("rejectUser method in controller started");
+		var reason = prompt("Enter the reason for rejection");
+		UserService
+			.rejectUser(username, reason)
+			.then(
+					function(udata) {
+						self.manageUsers();
+					},
+					function(errorresponse) {
+						console.error("Error while rejecting user for management");
 					}
 			);
 	};

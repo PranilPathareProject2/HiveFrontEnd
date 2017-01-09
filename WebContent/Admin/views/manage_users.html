@@ -1,5 +1,4 @@
 <div class="container" ng-controller="UserController as uctrl">
-	<button ng-click="uctrl.manageUsers()">Get it</button>
 	<div class="table-responsive">
 	<table class="table table-bordered">
 		<thead>
@@ -8,16 +7,18 @@
 				<th>Password</th>
 				<th>Role</th>
 				<th>Status</th>
+				<th>Reason for Rejection</th>
 				<th>Accept/Reject</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="user in uctrl.users">
-				<td>{{user.username}}</td>
-				<td>{{user.password}}</td>
-				<td>{{user.role}}</td>
-				<td>{{user.status}}</td>
-				<td><button class="btn btn-xs btn-success" ng-click="uctrl.acceptUser({{user.username}})">Accept</button> <button class="btn btn-xs btn-danger">Reject</button></td>
+			<tr ng-repeat="usercred in uctrl.usercreds">
+				<td>{{usercred.username}}</td>
+				<td>{{usercred.password}}</td>
+				<td>{{usercred.role}}</td>
+				<td>{{usercred.status}}</td>
+				<td>{{usercred.reason}}</td>
+				<td><button class="btn btn-xs btn-success" ng-click="uctrl.acceptUser(usercred.username)">Accept</button> <button class="btn btn-xs btn-danger" ng-click="uctrl.rejectUser(usercred.username)">Reject</button></td>
 			</tr>
 		</tbody>
 	</table>

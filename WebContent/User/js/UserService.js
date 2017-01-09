@@ -34,7 +34,16 @@ app.service('UserService', [ '$http', '$q', '$rootScope', function($http, $q, $r
 		},
 		
 		acceptUser: function(username) {
-			return $http.get(url+'/manageusers'+username).then(
+			return $http.put(url+'/acceptuser/'+username).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		rejectUser: function(username, reason) {
+			return $http.put(url+'/rejectuser/'+username+'/'+reason).then(
 				function(response){
 					return response.data;
 				},
