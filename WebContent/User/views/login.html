@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="UserController as uctrl">
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3 jumbotron">
 			<h2 class="text-center">Login</h2>
@@ -6,14 +6,14 @@
 			<form name="loginform" novalidate>
 				<div class="form-group">
 					<label for="usrname">Username:</label>
-					<input type="text" id="usrname" name="username" class="form-control" placeholder="Enter Registered User Name" required="required" ng-model="username" />
+					<input type="text" id="usrname" name="username" class="form-control" placeholder="Enter Registered User Name" required="required" ng-model="uctrl.usercred.username" />
 					<span style="color: red;" ng-show="loginform.username.$dirty && loginform.username.$invalid">
 						<span ng-show="loginform.username.$error.required">Username is required</span>
 					</span>
 				</div>
 				<div class="form-group">
 					<label for="pass">Password:</label> 
-					<input type="password" id="pass" name="password" placeholder="Enter Password" class="form-control" required="required" ng-model="password" />
+					<input type="password" id="pass" name="password" placeholder="Enter Password" class="form-control" required="required" ng-model="uctrl.usercred.password" />
 					<span style="color: red;" ng-show="loginform.password.$dirty && loginform.password.$invalid">
 						<span ng-show="loginform.password.$error.required">Password is required</span>
 					</span>
@@ -24,7 +24,7 @@
 					a member? <a href="#/signup">Sign Up</a>
 				</small>
 				<div style="padding-top: 10px">
-					<input ng-disabled="loginform.$invalid" type="submit" class="btn btn-primary btn-block">
+					<input ng-disabled="loginform.$invalid" type="submit" ng-submit="uctrl.login()" class="btn btn-primary btn-block">
 				</div>
 			</form>
 			<!-- login form starts -->

@@ -49,6 +49,24 @@ app.service('UserService', [ '$http', '$q', '$rootScope', function($http, $q, $r
 				},
 				null
 			);
+		},
+		
+		authenticate: function(usercred) {
+			return $http.post(url+'/authenticateuser',usercred).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		logout: function() {
+			return $http.get(url+'/logout').then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
 		}
 	};
 }]);

@@ -1,6 +1,7 @@
-app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http', function($scope, UserService, $rootScope, $http){
+app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http', '$location', '$cookieStore', function($scope, UserService, $rootScope, $http, $location, $cookieStore){
 	var self = this;
-	self.user = {"username":"", "firstname":"", "lastname":"", "date_of_birth":"", "email_id":"", "gender":"", "contact_no":"", "address":"", "state":"", "city":"", "pincode":"", "experience":"", "qualification":"", "reason":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
+	self.user = {"username":"", "firstname":"", "lastname":"", "date_of_birth":"", "email_id":"", "gender":"", "contact_no":"", "address":"", "state":"", "city":"", "pincode":"", "experience":"", "qualification":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
+	self.usercred = {"username":"", "reason":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
 	self.users = [];
 	self.usercreds = [];
 	
@@ -85,6 +86,58 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 					},
 					function(errorresponse) {
 						console.error("Error while rejecting user for management");
+					}
+			);
+	};
+	
+	self.authenticate = function(usercred) {
+		console.log("authenticate method in controller started");
+		UserService
+			.authenticate(usercred)
+			.then(
+					function(udata) {
+						self.usercred = udata;
+						
+						if(self.usercred.errorCode == "404")
+						{
+							alert(self.usercred.errorMessage);
+						}
+						else
+						{
+							console.log("Valid credentials, navigating to home page");
+							$rootScope.loggedInUser = self.usercred.username;
+							$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
+							$cookieStore.put('loggedInUser', $rootScope.loggedInUser);
+							$location.path("/");
+						}	
+					},
+					function(errorresponse) {
+						console.error("Error while logging in user");
+					}
+			);
+	};
+	
+	self.login = function() {
+		console.log("login method in controller started");
+		self.authenticate(self.usercred);
+		//self.reset();
+		console.log("login method in controller ended");
+	};
+	
+	self.logout = function() {
+		console.log("logout method in controller started");
+		UserService
+			.logout()
+			.then(
+					function(udata) {
+						self.usercred = udata;
+						$rootScope.loggedInUser = {};
+						$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
+						$cookieStore.remove('loggedInUser');
+						$location.path("/");
+					},
+					function(errorresponse) {
+						console.error("Error while logging out user");
 					}
 			);
 	};
