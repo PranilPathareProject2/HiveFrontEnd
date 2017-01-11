@@ -27,9 +27,12 @@ Latest Font Awesome CSS
 						<li><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 						<li><a href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 						<li><a href=""><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
-						<li><a ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Sign Up</a></li>
+						<li><a ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						<li><a href="#/"><span class="fa fa-users"></span> (0)</a></li>
 					</ul>
+					<div ng-show="userLoggedIn">
+						<p>Welcome {{loggedInUser}}</p>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -138,6 +141,9 @@ Latest Font Awesome CSS
 	
 	<!-- Local AngularJS Route file -->
 	<script src="resources/javascript/angular-route.js"></script>
+	
+	<!-- Local AngularJS Cookies file -->
+	<script src="resources/javascript/angular-cookies.js"></script>
 	
 	<!-- Local App file -->
 	<script src="hiveapp.js"></script>

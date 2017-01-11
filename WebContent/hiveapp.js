@@ -1,4 +1,4 @@
-var app = angular.module('hiveapp', ['ngRoute']);
+var app = angular.module('hiveapp', ['ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider){
 	$routeProvider
@@ -76,4 +76,45 @@ app.config(function($routeProvider){
 	.otherwise({
 		redirectTo: '/'
 	});
+});
+
+app.run(function ($rootScope, $location, $cookieStore, $http){
+	$rootScope.$on('$locationChangeStart', function(event, next, current){
+		console.log('$locationChangeStart');
+		
+		var userPages = ["/createblog"];
+		var adminPages = ["/manageusers"];
+		
+		var currentPage = $location.path();
+		
+		var isUserPage = $.inArray(currentPage, userPages)==0;
+		var isAdminPage = $.inArray(currentPage, adminPages)==0;
+		
+		var loggedIn = $rootScope.loggedInUser;
+		
+			if(angular.equals(loggedIn, {}))
+			{
+				if(isUserPage || isAdminPage)
+				{
+					alert("Please login to do this operation");
+					$location.path("/login");
+				}	
+			}
+			else
+			{
+				if(isAdminPage && $rootScope.loggedInUserRole!='ROLE_ADMIN')
+				{
+					alert("You are not authorized to access this page");
+					$location.path("/");
+				}	
+			}	
+	});
+	
+	//To keep user logged in after page refresh
+	$rootScope.loggedInUser = $cookieStore.get("loggedInUser");
+	$rootScope.loggedInUserRole = $cookieStore.get("loggedInUserRole");
+	if($rootScope.loggedInUser)
+	{
+		$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
+	}	
 });

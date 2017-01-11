@@ -106,8 +106,11 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 						{
 							console.log("Valid credentials, navigating to home page");
 							$rootScope.loggedInUser = self.usercred.username;
+							$rootScope.userLoggedIn = true;
+							$rootScope.loggedInUserRole = self.usercred.role;
 							$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
 							$cookieStore.put('loggedInUser', $rootScope.loggedInUser);
+							$cookieStore.put('loggedInUserRole', $rootScope.loggedInUserRole);
 							$location.path("/");
 						}	
 					},
@@ -132,8 +135,11 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 					function(udata) {
 						self.usercred = udata;
 						$rootScope.loggedInUser = {};
+						$rootScope.userLoggedIn = false;
+						$rootScope.loggedInUserRole = {};
 						$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
 						$cookieStore.remove('loggedInUser');
+						$cookieStore.remove('loggedInUserRole');
 						$location.path("/");
 					},
 					function(errorresponse) {

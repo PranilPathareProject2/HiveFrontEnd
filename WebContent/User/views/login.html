@@ -1,9 +1,9 @@
-<div ng-controller="UserController as uctrl">
-	<div class="row">
+<div class="container">
+	<div class="row" ng-controller="UserController as uctrl">
 		<div class="col-sm-6 col-sm-offset-3 jumbotron">
 			<h2 class="text-center">Login</h2>
 			<!-- login form starts -->
-			<form name="loginform" novalidate>
+			<form name="loginform" ng-submit="uctrl.login()" novalidate>
 				<div class="form-group">
 					<label for="usrname">Username:</label>
 					<input type="text" id="usrname" name="username" class="form-control" placeholder="Enter Registered User Name" required="required" ng-model="uctrl.usercred.username" />
@@ -23,8 +23,9 @@
 				</small> <small class="pull-left" style="padding-top: 5px; clear: right;">Not
 					a member? <a href="#/signup">Sign Up</a>
 				</small>
+				
 				<div style="padding-top: 10px">
-					<input ng-disabled="loginform.$invalid" type="submit" ng-submit="uctrl.login()" class="btn btn-primary btn-block">
+					<input ng-disabled="loginform.$invalid" type="submit" class="btn btn-primary btn-block">
 				</div>
 			</form>
 			<!-- login form starts -->
