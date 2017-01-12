@@ -1,4 +1,4 @@
-app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http', '$location', '$cookieStore', function($scope, UserService, $rootScope, $http, $location, $cookieStore){
+app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http', '$location', '$cookies', function($scope, UserService, $rootScope, $http, $location, $cookies){
 	var self = this;
 	self.user = {"username":"", "firstname":"", "lastname":"", "date_of_birth":"", "email_id":"", "gender":"", "contact_no":"", "address":"", "state":"", "city":"", "pincode":"", "experience":"", "qualification":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
 	self.usercred = {"username":"", "reason":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
@@ -28,7 +28,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 						self.usercreds = d;
 					},
 					function(errorresponse) {
-						console.error("Error while fetching users");
+						console.error("Error while fetching users for management");
 					}
 			);
 	};
@@ -44,7 +44,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 						self.user = udata;
 					},
 					function(errorresponse) {
-						console.error("Error while creating user for management");
+						console.error("Error while creating user");
 					}
 			);
 	};
@@ -90,6 +90,20 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			);
 	};
 	
+	self.makeAdmin = function(username) {
+		console.log("makeAdmin method in controller started");
+		UserService
+			.makeAdmin(username)
+			.then(
+					function(udata) {
+						self.manageUsers();
+					},
+					function(errorresponse) {
+						console.error("Error while making a user admin");
+					}
+			);
+	};
+	
 	self.authenticate = function(usercred) {
 		console.log("authenticate method in controller started");
 		UserService
@@ -109,8 +123,9 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 							$rootScope.userLoggedIn = true;
 							$rootScope.loggedInUserRole = self.usercred.role;
 							$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
-							$cookieStore.put('loggedInUser', $rootScope.loggedInUser);
-							$cookieStore.put('loggedInUserRole', $rootScope.loggedInUserRole);
+							$cookies.put('loggedInUser', $rootScope.loggedInUser);
+							$cookies.put('userLoggedIn', $rootScope.userLoggedIn);
+							$cookies.put('loggedInUserRole', $rootScope.loggedInUserRole);
 							$location.path("/");
 						}	
 					},
@@ -138,13 +153,51 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 						$rootScope.userLoggedIn = false;
 						$rootScope.loggedInUserRole = {};
 						$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
-						$cookieStore.remove('loggedInUser');
-						$cookieStore.remove('loggedInUserRole');
+						$cookies.remove('loggedInUser');
+						$cookies.remove('loggedInUserRole');
+						$cookies.remove('userLoggedIn');
 						$location.path("/");
 					},
 					function(errorresponse) {
 						console.error("Error while logging out user");
 					}
 			);
+	};
+	
+	self.userProfile = function(username) {
+		console.log("userProfile method in controller started");
+		UserService
+			.userProfile(username)
+			.then(
+					function(udata) {
+						self.user = udata;
+					},
+					function(errorresponse) {
+						console.error("Error while fetching user");
+					}
+			);
+	};
+	
+	self.userProfile($rootScope.loggedInUser);
+	
+	self.updateUser = function(user) {
+		console.log("updateUser method in controller started");
+		UserService
+			.updateUser(user)
+			.then(
+					function(udata) {
+						self.user = udata;
+					},
+					function(errorresponse) {
+						console.error("Error while updating user");
+					}
+			);
+	};
+	
+	self.submitProfileToUpdate = function() {
+		console.log("submitProfileToUpdate method in controller started");
+		self.updateUser(self.user);
+		console.log("submitProfileToUpdate method in controller ended");
+		self.reset();
 	};
 }]);

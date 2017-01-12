@@ -3,6 +3,7 @@ var app = angular.module('hiveapp', ['ngRoute', 'ngCookies']);
 app.config(function($routeProvider){
 	$routeProvider
 	
+	//Home page related start
 	.when('/',{
 		templateUrl: 'Home/views/home.html',
 		controller: 'HomeController'	
@@ -26,6 +27,13 @@ app.config(function($routeProvider){
 		controller: 'UserController'
 	})
 	
+	.when('/userprofile',{
+		templateUrl: 'User/views/user_profile.html',
+		controller: 'UserController'
+	})
+	//Home page related end
+	
+	//Blog related start
 	.when('/createblog',{
 		templateUrl: 'Blog/views/create_blog.html',
 		controller: 'BlogController'	
@@ -35,6 +43,7 @@ app.config(function($routeProvider){
 		templateUrl: 'Blog/views/view_blogs.html',
 		controller: 'BlogController'
 	})
+	//Blog related end
 	
 	.when('/createforum',{
 		templateUrl: 'Chat Forum/views/create_forum.html'
@@ -68,27 +77,29 @@ app.config(function($routeProvider){
 		templateUrl: 'Event/views/view_events.html'
 	})
 	
+	//Admin related start
 	.when('/manageusers',{
 		templateUrl: 'Admin/views/manage_users.html',
 		controller: 'UserController'
 	})
+	//Admin related end
 	
 	.otherwise({
 		redirectTo: '/'
 	});
 });
 
-app.run(function ($rootScope, $location, $cookieStore, $http){
+app.run(function ($rootScope, $location, $cookies, $http){
 	$rootScope.$on('$locationChangeStart', function(event, next, current){
 		console.log('$locationChangeStart');
 		
-		var userPages = ["/createblog"];
+		var userPages = ["/createblog", "/userprofile"];
 		var adminPages = ["/manageusers"];
 		
 		var currentPage = $location.path();
 		
-		var isUserPage = $.inArray(currentPage, userPages)==0;
-		var isAdminPage = $.inArray(currentPage, adminPages)==0;
+		var isUserPage = !($.inArray(currentPage, userPages)==-1);
+		var isAdminPage = !($.inArray(currentPage, adminPages)==-1);
 		
 		var loggedIn = $rootScope.loggedInUser;
 		
@@ -111,8 +122,9 @@ app.run(function ($rootScope, $location, $cookieStore, $http){
 	});
 	
 	//To keep user logged in after page refresh
-	$rootScope.loggedInUser = $cookieStore.get("loggedInUser");
-	$rootScope.loggedInUserRole = $cookieStore.get("loggedInUserRole");
+	$rootScope.loggedInUser = $cookies.get("loggedInUser");
+	$rootScope.loggedInUserRole = $cookies.get("loggedInUserRole");
+	$rootScope.userLoggedIn = $cookies.get('userLoggedIn');
 	if($rootScope.loggedInUser)
 	{
 		$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;

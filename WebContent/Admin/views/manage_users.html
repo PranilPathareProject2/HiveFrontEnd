@@ -9,6 +9,7 @@
 				<th>Status</th>
 				<th>Reason for Rejection</th>
 				<th>Accept/Reject</th>
+				<th>Make Admin</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,7 +19,8 @@
 				<td>{{usercred.role}}</td>
 				<td>{{usercred.status}}</td>
 				<td>{{usercred.reason}}</td>
-				<td><button class="btn btn-xs btn-success" ng-click="uctrl.acceptUser(usercred.username)">Accept</button> <button class="btn btn-xs btn-danger" ng-click="uctrl.rejectUser(usercred.username)">Reject</button></td>
+				<td><button ng-show="usercred.status == 'Rejected' || usercred.status == 'New'" class="btn btn-xs btn-success" ng-click="uctrl.acceptUser(usercred.username)">Accept</button> <button ng-show="usercred.status == 'Accepted'" class="btn btn-xs btn-danger" ng-click="uctrl.rejectUser(usercred.username)">Reject</button></td>
+				<td><button ng-show="usercred.role == 'ROLE_EMPLOYEE'" class="btn btn-xs btn-success" ng-click="uctrl.makeAdmin(usercred.username)">Make Admin</button></td>
 			</tr>
 		</tbody>
 	</table>
