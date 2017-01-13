@@ -57,18 +57,31 @@ app.config(function($routeProvider){
 		templateUrl: 'Friend/views/my_friends.html'
 	})
 	
+	.when('/findafriend',{
+		templateUrl: 'Friend/views/find_a_friend.html'
+	})
+	
 	.when('/onlinefriends',{
 		templateUrl: 'Friend/views/online_friends.html'
 	})
 	
+	//Job related starts
 	.when('/viewjobs',{
 		templateUrl: 'Job/views/view_jobs.html'
+	})
+	
+	.when('/managejobs',{
+		templateUrl: 'Job/views/manage_jobs.html'
+	})
+	
+	.when('/viewjobdetails',{
+		templateUrl: 'Job/views/view_job_details.html'
 	})
 	
 	.when('/appliedjobs',{
 		templateUrl: 'Job/views/applied_jobs.html'
 	})
-	
+	//Job related ends
 	.when('/viewbulletins',{
 		templateUrl: 'Bulletin/views/view_bulletins.html'
 	})

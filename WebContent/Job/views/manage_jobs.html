@@ -1,0 +1,66 @@
+<div>
+	<div class="jumbotron">
+			<!-- Job form starts -->
+			<form name="jobform" ng-submit="" novalidate>
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<label for="jobid">Job ID:</label>
+						<input type="text" id="jobid" name="jobid" class="form-control" required="required" readonly="readonly" ng-model="jctrl.job.job_id"/>
+						<span style="color: red;" ng-show="jobform.jobid.$dirty && jobform.jobid.$invalid">
+							<span ng-show="jobform.jobid.$error.required">Job ID is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="title">Job Title:</label>
+						<input type="text" id="title" name="title" class="form-control" placeholder="Enter Job Title" required="required" ng-model="jctrl.job.job_title" />
+						<span style="color: red;" ng-show="jobform.title.$dirty && jobform.title.$invalid">
+							<span ng-show="jobform.title.$error.required">Job title is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="jobdesc">Job Description:</label>
+						<textarea rows="3" id="jobdesc" name="jobdesc" class="form-control" placeholder="Enter Job Description" required="required" ng-model="jctrl.job.job_description" ></textarea>
+						<span style="color: red;" ng-show="jobform.jobdesc.$dirty && jobform.jobdesc.$invalid">
+							<span ng-show="jobform.jobdesc.$error.required">Job description is required</span>
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<label for="jobdesgn">Job Designation:</label>
+						<input type="text" id="jobdesgn" name="jobdesgn" class="form-control" placeholder="Enter Job Designation" required="required" ng-model="jctrl.job.job_designation" />
+						<span style="color: red;" ng-show="jobform.jobdesgn.$dirty && jobform.jobdesgn.$invalid">
+							<span ng-show="jobform.jobdesgn.$error.required">Job designation is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="jobsal">Job Salary:</label> 
+						<input type="text" id="jobsal" rows="3" name="jobsal" placeholder="Enter Job Salary" class="form-control" required="required" ng-model="jctrl.job.job_salary" />
+						<small class="help-block">If not specified it will be "Not Disclosed"</small>
+					</div>
+					<div class="form-group col-sm-4">
+					<label for="jobloc">Job Location:</label> 
+					<input type="text" id="jobloc" name="jobloc" placeholder="Enter Job Location" class="form-control" required="required" ng-model="jctrl.job.job_location" />
+					<span style="color: red;" ng-show="jobform.jobloc.$dirty && jobform.jobloc.$invalid">
+						<span ng-show="jobform.jobloc.$error.required">Job location is required</span>
+					</span>
+					</div>
+				</div>	
+				<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="experience">Experience:</label> 
+					<input type="text" id="experience" name="experience" placeholder="Enter Experience Required" class="form-control" required="required" ng-model="jctrl.job.experience" />
+					<span style="color: red;" ng-show="jobform.experience.$dirty && jobform.experience.$invalid">
+						<span ng-show="jobform.experience.$error.required">Experience is required</span>
+					</span>
+				</div>
+				</div>
+				<div class="row">
+					<div style="padding-top: 10px" class="col-sm-4 col-sm-offset-4">
+						<input type="submit" ng-disabled="jobform.$invalid" class="btn btn-primary btn-block" value="Post Job">
+					</div>
+				</div>
+			</form>
+			<!-- Job form ends -->
+		</div>	
+</div>

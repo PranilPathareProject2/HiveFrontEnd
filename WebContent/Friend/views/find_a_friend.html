@@ -1,0 +1,30 @@
+<div class="container" ng-controller="UserController as uctrl">
+	<div class="row">
+		<div class="col-sm-8">
+		</div>
+		<div class="col-sm-4">
+			<label>Search A Friend:</label>
+			<input type="text" ng-model="searchtext" class="form-control" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th></th>
+					<th>Add friend</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in uctrl.users | filter: searchtext">
+					<td>{{user.firstname +' '+ user.lastname}}</td>
+					<td></td>
+					<td><button class="btn btn-warning btn-xs">Add friend</button></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>	

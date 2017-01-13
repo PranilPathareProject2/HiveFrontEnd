@@ -19,6 +19,8 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			);
 	};
 	
+	self.allUsers();
+	
 	self.manageUsers = function() {
 		console.log("manageUsers method in controller started");
 		UserService
