@@ -1,3 +1,35 @@
-<div>
-view_job_details
+<div class="container" ng-controller="JobController as jctrl">
+	<div class="row">
+		<div class="col-sm-12">
+			<p><b>Title</b>: {{selectedjob.job_title}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<p><b>Designation</b>: {{selectedjob.job_designation}}</p>
+		</div>
+		<div class="col-sm-4">
+			<p><b>Date Posted</b>: {{selectedjob.posted_date | date : "dd/MM/y"}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<p><b>Description</b>: {{selectedjob.job_description}}</p>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<p><b>Salary</b>: {{selectedjob.job_salary}}</p>
+		</div>
+		<div class="col-sm-4">
+			<p><b>Location</b>: {{selectedjob.job_location}}</p>
+		</div>
+		<div class="col-sm-4">
+			<p><b>Experience</b>: {{selectedjob.experience}}</p>
+		</div>
+	</div>
+	<div style="padding-bottom: 10px">
+	<a href="#/viewjobs" class="btn btn-danger">Back</a>
+	<button class="btn btn-warning pull-right" ng-click="jctrl.applyJob(job.job_id)">Apply</button>
+	</div>
 </div>

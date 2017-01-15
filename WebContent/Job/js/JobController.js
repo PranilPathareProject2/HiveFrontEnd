@@ -43,7 +43,7 @@ app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http',
 			.postJob(job)
 			.then(
 					function(jdata) {
-						self.job = jdata;
+						self.job.errorMessage = jdata.errorMessage;
 					},
 					function(errorresponse) {
 						console.error("Error while creating job");
@@ -69,7 +69,7 @@ app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http',
 			.getJobDetails(job_id)
 			.then(
 					function(jdata) {
-						self.job = jdata;
+						$rootScope.selectedjob = jdata;
 						$location.path("/viewjobdetails")
 					},
 					function(errorresponse) {
@@ -92,26 +92,38 @@ app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http',
 			);
 	};
 	
+	self.applyJob = function(job_id) {
+		console.log("applyJob method in controller started");
+		JobService
+			.applyJob(job_id)
+			.then(
+					function(jdata) {
+						alert("Successfully applied for this job, check My Applied Jobs tab for its status");
+					},
+					function(errorresponse) {
+						console.error("Error while applying for job");
+					}
+			);
+	};
+	
+	self.getMyAppliedJobs = function() {
+		console.log("getMyAppliedJobs method in controller started");
+		JobService
+			.getMyAppliedJobs()
+			.then(
+					function(d) {
+						self.jobs = d;
+					},
+					function(errorresponse) {
+						console.error("Error while fetching applied jobs");
+					}
+			);
+	};
+	
 	self.submitJobToUpdate = function() {
 		console.log("submitJobToUpdate method in controller started");
 		self.updateJob(self.job);
 		self.reset();
 		console.log("submitJobToUpdate method in controller ended");
 	};
-	
-	self.nextID = function() {
-		console.log("nextID method in controller started");
-		JobService
-			.nextID()
-			.then(
-					function(jdata) {
-						self.job = jdata;
-					},
-					function(errorresponse) {
-						console.error("Error while updating job");
-					}
-			);
-	};
-	
-	self.nextID();
 }]);

@@ -24,42 +24,6 @@ app.service('JobService', [ '$http', '$q', '$rootScope', function($http, $q, $ro
 			);
 		},
 		
-		/*manageUsers: function() {
-			return $http.get(url+'/manageusers').then(
-				function(response){
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		acceptUser: function(username) {
-			return $http.put(url+'/acceptuser/'+username).then(
-				function(response){
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		rejectUser: function(username, reason) {
-			return $http.put(url+'/rejectuser/'+username+'/'+reason).then(
-				function(response){
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		makeAdmin: function(username) {
-			return $http.put(url+'/makeadmin/'+username).then(
-				function(response){
-					return response.data;
-				},
-				null
-			);
-		},*/
-		
 		updateJob: function(job) {
 			return $http.put(url+'/updatejob',job).then(
 				function(response){
@@ -70,9 +34,19 @@ app.service('JobService', [ '$http', '$q', '$rootScope', function($http, $q, $ro
 			);
 		},
 		
-		nextID: function() {
-			return $http.get(url+'/nextjobid').then(
+		getMyAppliedJobs: function() {
+			return $http.get(url+'/getmyappliedjobs').then(
 				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		applyJob: function(job_id) {
+			return $http.post(url+'/applyjob/'+job_id).then(
+				function(response){
+					console.log(response.data);
 					return response.data;
 				},
 				null
@@ -83,6 +57,7 @@ app.service('JobService', [ '$http', '$q', '$rootScope', function($http, $q, $ro
 			return $http.get(url+'/getjobdetails/'+job_id).then(
 				function(response){
 					response.data.posted_date = new Date(response.data.posted_date);
+					console.log(response.data);
 					return response.data;
 				},
 				null

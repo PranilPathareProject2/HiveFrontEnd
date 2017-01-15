@@ -43,7 +43,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			.addUser(user)
 			.then(
 					function(udata) {
-						self.user = udata;
+						self.user.errorMessage = udata.errorMessage;
 					},
 					function(errorresponse) {
 						console.error("Error while creating user");
@@ -188,7 +188,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			.updateUser(user)
 			.then(
 					function(udata) {
-						self.user = udata;
+						self.user.errorMessage = udata.errorMessage;
 					},
 					function(errorresponse) {
 						console.error("Error while updating user");

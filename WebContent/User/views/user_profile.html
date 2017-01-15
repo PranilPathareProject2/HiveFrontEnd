@@ -1,10 +1,10 @@
 <div ng-controller="UserController as uctrl">
-	<!-- <div ng-hide="uctrl.user.errorMessage == ''">
-		<div class="alert alert-info alert-dismissable fade in">
-	    	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	    	{{uctrl.user.errorMessage}}
-	  	</div>
-  	</div> -->
+	<div ng-hide="uctrl.user.errorMessage == ''">
+			<div class="alert alert-info alert-dismissable fade in">
+	    		<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	    		{{uctrl.user.errorMessage}}
+	  		</div>
+  	</div>
 	<div class="jumbotron">
 			<h2 class="text-center">My Profile</h2>
 			<!-- Profile form starts -->
@@ -13,7 +13,7 @@
 					<div class="form-group col-sm-4">
 						<label for="fname">First Name:</label>
 						<input type="text" id="fname" name="firstname" class="form-control" placeholder="Enter First Name" required="required" pattern="^[A-Za-z]*$" ng-model="uctrl.user.firstname" value="{{uctrl.user.firstname}}" />
-						<span style="color: red;" ng-show="profileform.firstname.$dirty && profileform.firstname.$invalid">
+						<span style="color: red;" ng-show="profileform.firstname.$dirty && profileform.firstname.$invalid && !profileform.$submitted">
 							<span ng-show="profileform.firstname.$error.required">First name is required</span>
 							<span ng-show="profileform.firstname.$error.pattern">Invalid first name</span>
 						</span>
@@ -21,7 +21,7 @@
 					<div class="form-group col-sm-4">
 						<label for="lname">Last Name:</label>
 						<input type="text" id="lname" name="lastname" class="form-control" placeholder="Enter Last Name" required="required" pattern="^[A-Za-z]*$" ng-model="uctrl.user.lastname" value="{{uctrl.user.lastname}}" />
-						<span style="color: red;" ng-show="profileform.lastname.$dirty && profileform.lastname.$invalid">
+						<span style="color: red;" ng-show="profileform.lastname.$dirty && profileform.lastname.$invalid && !profileform.$submitted">
 							<span ng-show="profileform.lastname.$error.required">Last name is required</span>
 							<span ng-show="profileform.firstname.$error.pattern">Invalid last name </span>
 						</span>
@@ -35,7 +35,7 @@
 					<div class="form-group col-sm-4">
 						<label for="email">Email ID:</label>
 						<input type="email" id="email" name="emailid" class="form-control" placeholder="Enter Email ID" required="required" ng-model="uctrl.user.email_id" value="{{uctrl.user.email_id}}" />
-						<span style="color: red;" ng-show="profileform.emailid.$dirty && profileform.emailid.$invalid">
+						<span style="color: red;" ng-show="profileform.emailid.$dirty && profileform.emailid.$invalid && !profileform.$submitted">
 							<span ng-show="profileform.emailid.$error.required">Email ID is required</span>
 							<span ng-show="profileform.emailid.$error.email">Invalid Email ID</span>
 						</span>
@@ -43,14 +43,14 @@
 					<div class="form-group col-sm-4">
 						<label for="address">Address:</label> 
 						<textarea id="address" rows="3" name="address" placeholder="Enter Address" class="form-control" required="required" ng-model="uctrl.user.address" value="{{uctrl.user.address}}" ></textarea>
-						<span style="color: red;" ng-show="profileform.address.$dirty && profileform.address.$invalid">
+						<span style="color: red;" ng-show="profileform.address.$dirty && profileform.address.$invalid && !profileform.$submitted">
 							<span ng-show="profileform.address.$error.required">Address is required</span>
 						</span>
 					</div>
 					<div class="form-group col-sm-4">
 					<label for="pincode">Pincode:</label> 
 					<input type="text" id="pincode" name="pincode" placeholder="Enter Pincode" class="form-control" required="required" ng-model="uctrl.user.pincode" value="{{uctrl.user.pincode}}" />
-					<span style="color: red;" ng-show="profileform.pincode.$dirty && profileform.pincode.$invalid">
+					<span style="color: red;" ng-show="profileform.pincode.$dirty && profileform.pincode.$invalid && !profileform.$submitted">
 						<span ng-show="profileform.pincode.$error.required">Pincode is required</span>
 					</span>
 					</div>
@@ -59,21 +59,21 @@
 				<div class="form-group col-sm-4">
 					<label for="city">City:</label> 
 					<input type="text" id="city" name="city" placeholder="Enter City" class="form-control" required="required" ng-model="uctrl.user.city" value="{{uctrl.user.city}}" />
-					<span style="color: red;" ng-show="profileform.city.$dirty && profileform.city.$invalid">
+					<span style="color: red;" ng-show="profileform.city.$dirty && profileform.city.$invalid && !profileform.$submitted">
 						<span ng-show="profileform.city.$error.required">City is required</span>
 					</span>
 				</div>
 				<div class="form-group col-sm-4">
 						<label for="state">State:</label> 
 						<input type="text" id="state" name="state" placeholder="Enter State" class="form-control" required="required" ng-model="uctrl.user.state" value="{{uctrl.user.state}}" />
-						<span style="color: red;" ng-show="profileform.state.$dirty && profileform.state.$invalid">
+						<span style="color: red;" ng-show="profileform.state.$dirty && profileform.state.$invalid && !profileform.$submitted">
 							<span ng-show="profileform.state.$error.required">State is required</span>
 						</span>
 					</div>
 				<div class="form-group col-sm-4">
 					<label for="dob">Date Of Birth:</label> 
 					<input type="date" id="dob" name="dob" placeholder="Enter Date Of Birth (dd/mm/yyyy)" class="form-control" required="required" ng-model="uctrl.user.date_of_birth" value="" />
-					<span style="color: red;" ng-show="profileform.dob.$dirty && profileform.dob.$invalid">
+					<span style="color: red;" ng-show="profileform.dob.$dirty && profileform.dob.$invalid && !profileform.$submitted">
 						<span ng-show="profileform.dob.$error.required">Date Of Birth is required</span>
 					</span>
 				</div>
@@ -82,14 +82,14 @@
 				<div class="form-group col-sm-4">
 					<label for="cnumber">Contact No.:</label> 
 					<input type="text" id="cnumber" name="contactnumber" placeholder="Enter Contact Number" class="form-control" required="required" ng-model="uctrl.user.contact_no" value="{{uctrl.user.contact_no}}"/>
-					<span style="color: red;" ng-show="profileform.cnumber.$dirty && profileform.cnumber.$invalid">
+					<span style="color: red;" ng-show="profileform.cnumber.$dirty && profileform.cnumber.$invalid && !profileform.$submitted">
 						<span ng-show="profileform.cnumber.$error.required">Contact No. is required</span>
 					</span>
 				</div>
 				<div class="form-group col-sm-4">
 					<label for="qual">Qualification:</label> 
 					<input type="text" id="qual" name="qualification" placeholder="Enter Highest Qualification" class="form-control" required="required" ng-model="uctrl.user.qualification" value="{{uctrl.user.qualification}}" />
-					<span style="color: red;" ng-show="profileform.qualification.$dirty && profileform.qualification.$invalid">
+					<span style="color: red;" ng-show="profileform.qualification.$dirty && profileform.qualification.$invalid && !profileform.$submitted">
 						<span ng-show="profileform.qualification.$error.required">Qualification is required</span>
 					</span>
 				</div>
@@ -102,7 +102,7 @@
 				<div class="form-group col-sm-4">
 					<label>Gender:</label>
     				<input type="text" name="gender" class="form-control" ng-model="uctrl.user.gender" value="{{uctrl.user.gender}}" required="required">
-    				<span style="color: red;" ng-show="profileform.gender.$dirty && profileform.gender.$invalid">
+    				<span style="color: red;" ng-show="profileform.gender.$dirty && profileform.gender.$invalid && !profileform.$submitted">
 						<span ng-show="profileform.gender.$error.required">Gender is required</span>
 					</span>
 				</div>

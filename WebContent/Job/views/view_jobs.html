@@ -1,3 +1,30 @@
-<div>
-	<p>In View Jobs</p>
-</div>
+<div class="container" ng-controller="JobController as jctrl">
+	<div class="row">
+		<div class="col-sm-8">
+		</div>
+		<div class="col-sm-4">
+			<label>Search A Job:</label>
+			<input type="text" ng-model="searchtext" class="form-control" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Job Title</th>
+					<th>Designation</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="job in jctrl.jobs | filter: searchtext">
+					<td>{{job.job_title}}</td>
+					<td>{{job.job_designation}}</td>
+					<td><button class="btn btn-success btn-xs" ng-click="jctrl.getJobDetails(job.job_id)" >Get Job Details</button> <button class="btn btn-warning btn-xs" ng-click="jctrl.applyJob(job.job_id)">Apply</button></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>	
