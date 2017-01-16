@@ -75,5 +75,31 @@
 				</div>
 			</form>
 			<!-- Job form ends -->
-		</div>	
+		</div>
+		<div class="table-responsive">
+		<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Job Applied ID</th>
+				<th>Job ID</th>
+				<th>Username</th>
+				<th>Applied Date</th>
+				<th>Status</th>
+				<th>Remarks</th>
+				<th>Change Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="jobapplication in jctrl.alljobapplications | orderBy: 'job_applied_id'">
+				<td>{{jobapplication.job_applied_id}}</td>
+				<td>{{jobapplication.job_id}}</td>
+				<td>{{jobapplication.username}}</td>
+				<td>{{jobapplication.applied_date}}</td>
+				<td>{{jobapplication.status}}</td>
+				<td>{{jobapplication.reason}}</td>
+				<td><button class="btn btn-xs btn-success" ng-click="jctrl.selectUser(jobapplication.job_id, jobapplication.username)">Select</button> <button class="btn btn-xs btn-success" ng-click="jctrl.callForInterview(jobapplication.job_id, jobapplication.username)">Call For Interview</button> <button class="btn btn-xs btn-danger" ng-click="jctrl.rejectJobApplication(jobapplication.job_id, jobapplication.username)">Reject</button></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>	
 </div>

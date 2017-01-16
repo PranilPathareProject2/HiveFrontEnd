@@ -1,9 +1,10 @@
 app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http', '$location', '$cookies', function($scope, JobService, $rootScope, $http, $location, $cookies){
 	var self = this;
 	self.job = {"job_id":"", "job_title":"", "job_description":"", "posted_date":"", "job_designation":"", "job_salary":"", "job_location":"", "experience":"", "status":"", "errorCode":"", "errorMessage":""};
-	self.jobapplication = {"job_applied_id":"", "job_id":"", "username":"", "applied_date":"", "rejection_reason":"", "status":"", "errorCode":"", "errorMessage":""};
+	self.jobapplication = {"job_applied_id":"", "job_id":"", "username":"", "applied_date":"", "reason":"", "status":"", "errorCode":"", "errorMessage":""};
 	self.jobs = [];
 	self.jobapplications = [];
+	self.alljobapplications = [];
 	
 	self.allJobs = function() {
 		console.log("allJobs method in controller started");
@@ -98,7 +99,7 @@ app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http',
 			.applyJob(job_id)
 			.then(
 					function(jdata) {
-						alert("Successfully applied for this job, check My Applied Jobs tab for its status");
+						alert(jdata.errorMessage);
 					},
 					function(errorresponse) {
 						console.error("Error while applying for job");
@@ -112,7 +113,7 @@ app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http',
 			.getMyAppliedJobs()
 			.then(
 					function(d) {
-						self.jobs = d;
+						self.jobapplications = d;
 					},
 					function(errorresponse) {
 						console.error("Error while fetching applied jobs");
@@ -120,10 +121,76 @@ app.controller('JobController', [ '$scope', 'JobService', '$rootScope', '$http',
 			);
 	};
 	
+	self.getMyAppliedJobs();
+	
+	self.getAllJobApplications = function() {
+		console.log("getAllJobApplications method in controller started");
+		JobService
+			.getAllJobApplications()
+			.then(
+					function(d) {
+						self.alljobapplications = d;
+					},
+					function(errorresponse) {
+						console.error("Error while fetching applied jobs");
+					}
+			);
+	};
+	
+	self.getAllJobApplications();
+	
 	self.submitJobToUpdate = function() {
 		console.log("submitJobToUpdate method in controller started");
 		self.updateJob(self.job);
 		self.reset();
 		console.log("submitJobToUpdate method in controller ended");
+	};
+	
+	self.selectUser = function(job_id, username) {
+		console.log("selectUser method in controller started");
+		var reason = prompt("Enter remarks");
+		JobService
+			.selectUser(job_id, username, reason)
+			.then(
+					function(jdata) {
+						alert(jdata.errorMessage);
+						self.getAllJobApplications();
+					},
+					function(errorresponse) {
+						console.error("Error while selecting user for job");
+					}
+			);
+	};
+	
+	self.callForInterview = function(job_id, username) {
+		console.log("callForInterview method in controller started");
+		var reason = prompt("Enter remarks");
+		JobService
+			.callForInterview(job_id, username, reason)
+			.then(
+					function(jdata) {
+						alert(jdata.errorMessage);
+						self.getAllJobApplications();
+					},
+					function(errorresponse) {
+						console.error("Error while selecting user for job");
+					}
+			);
+	};
+	
+	self.rejectJobApplication = function(job_id, username) {
+		console.log("rejectJobApplication method in controller started");
+		var reason = prompt("Enter remarks");
+		JobService
+			.rejectJobApplication(job_id, username, reason)
+			.then(
+					function(jdata) {
+						alert(jdata.errorMessage);
+						self.getAllJobApplications();
+					},
+					function(errorresponse) {
+						console.error("Error while selecting user for job");
+					}
+			);
 	};
 }]);

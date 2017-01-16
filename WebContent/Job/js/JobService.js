@@ -43,8 +43,47 @@ app.service('JobService', [ '$http', '$q', '$rootScope', function($http, $q, $ro
 			);
 		},
 		
+		getAllJobApplications: function() {
+			return $http.get(url+'/getalljobapplications').then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
 		applyJob: function(job_id) {
 			return $http.post(url+'/applyjob/'+job_id).then(
+				function(response){
+					console.log(response.data);
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		selectUser: function(job_id, username, reason) {
+			return $http.put(url+'/selectuser/'+job_id+'/'+username+'/'+reason).then(
+				function(response){
+					console.log(response.data);
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		callForInterview: function(job_id, username, reason) {
+			return $http.put(url+'/callforinterview/'+job_id+'/'+username+'/'+reason).then(
+				function(response){
+					console.log(response.data);
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		rejectJobApplication: function(job_id, username, reason) {
+			return $http.put(url+'/rejectjobapplication/'+job_id+'/'+username+'/'+reason).then(
 				function(response){
 					console.log(response.data);
 					return response.data;
