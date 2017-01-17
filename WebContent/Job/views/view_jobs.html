@@ -21,7 +21,7 @@
 				<tr ng-repeat="job in jctrl.jobs | orderBy: 'job_id' | filter: searchtext">
 					<td>{{job.job_title}}</td>
 					<td>{{job.job_designation}}</td>
-					<td><button class="btn btn-success btn-xs" ng-click="jctrl.getJobDetails(job.job_id)" >Get Job Details</button> <button class="btn btn-warning btn-xs" ng-click="jctrl.applyJob(job.job_id)">Apply</button></td>
+					<td><button class="btn btn-success btn-xs" ng-click="jctrl.getJobDetails(job.job_id)" >Get Job Details</button> <button ng-disabled="loggedInUserRole == 'ROLE_ADMIN'" class="btn btn-warning btn-xs" ng-click="jctrl.applyJob(job.job_id)">Apply</button></td>
 				</tr>
 			</tbody>
 		</table>

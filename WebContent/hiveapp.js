@@ -43,6 +43,11 @@ app.config(function($routeProvider){
 		templateUrl: 'Blog/views/view_blogs.html',
 		controller: 'BlogController'
 	})
+	
+	.when('/manageblogs',{
+		templateUrl: 'Blog/views/manage_blogs.html',
+		controller: 'BlogController'
+	})
 	//Blog related end
 	
 	.when('/createforum',{
@@ -51,6 +56,10 @@ app.config(function($routeProvider){
 	
 	.when('/viewforums',{
 		templateUrl: 'Chat Forum/views/view_forums.html'
+	})
+	
+	.when('/manageforums',{
+		templateUrl: 'Chat Forum/views/manage_forums.html'
 	})
 	
 	.when('/friends',{
@@ -82,13 +91,26 @@ app.config(function($routeProvider){
 		templateUrl: 'Job/views/applied_jobs.html'
 	})
 	//Job related ends
+	
+	//bulletin related starts
 	.when('/viewbulletins',{
 		templateUrl: 'Bulletin/views/view_bulletins.html'
 	})
 	
+	.when('/managebulletins',{
+		templateUrl: 'Bulletin/views/manage_bulletins.html'
+	})
+	//bulletin related ends
+	
+	//event related starts
 	.when('/viewevents',{
 		templateUrl: 'Event/views/view_events.html'
 	})
+	
+	.when('/manageevents',{
+		templateUrl: 'Event/views/manage_events.html'
+	})
+	//event related ends
 	
 	//Admin related start
 	.when('/manageusers',{
@@ -106,8 +128,8 @@ app.run(function ($rootScope, $location, $cookies, $http){
 	$rootScope.$on('$locationChangeStart', function(event, next, current){
 		console.log('$locationChangeStart');
 		
-		var userPages = ["/createblog", "/userprofile"];
-		var adminPages = ["/manageusers"];
+		var userPages = ["/createblog", "/userprofile", "/appliedjobs", "/createforum", "/friends", "/onlinefriends"];
+		var adminPages = ["/manageusers", "/managejobs", "/managebulletins", "/manageevents", "/manageforums", "/manageblogs"];
 		
 		var currentPage = $location.path();
 		

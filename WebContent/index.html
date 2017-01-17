@@ -54,7 +54,7 @@ Latest Font Awesome CSS
 					<ul class="dropdown-menu">
 						<li><a href="#/createblog">Create Blog</a></li>
 						<li><a href="#/viewblogs">View Blogs</a></li>
-						<li><a href="#/viewblogs">Manage Blogs</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageblogs">Manage Blogs</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -62,7 +62,7 @@ Latest Font Awesome CSS
 					<ul class="dropdown-menu">
 						<li><a href="#/createforum">Create Forum</a></li>
 						<li><a href="#/viewforums">View Forums</a></li>
-						<li><a href="">Manage Forums</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageforums">Manage Forums</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -77,8 +77,8 @@ Latest Font Awesome CSS
 					<a class="dropdown-toggle" data-toggle="dropdown">Jobs <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#/viewjobs">View Jobs</a></li>
-						<li><a href="#/appliedjobs">My Applied Jobs</a></li>
-						<li><a href="#/managejobs">Manage Jobs</a></li>
+						<li ng-show="loggedInUserRole != 'ROLE_ADMIN'"><a href="#/appliedjobs">My Applied Jobs</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/managejobs">Manage Jobs</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -86,11 +86,16 @@ Latest Font Awesome CSS
 					<ul class="dropdown-menu">
 						<li><a href="#/viewbulletins">Bulletins</a></li>
 						<li><a href="#/viewevents">Events</a></li>
-						<li><a href="">Manage Bulletins</a></li>
-						<li><a href="">Manage Events</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/managebulletins">Manage Bulletins</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageevents">Manage Events</a></li>
 					</ul>
 				</li>
-				<li><a href="#/manageusers">Manage Users</a></li>
+				<li ng-show="loggedInUserRole == 'ROLE_ADMIN'" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">Users <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#/manageusers">Manage Users</a></li>
+					</ul>
+				</li>
 			</ul>
 			</div>
 		</nav>
