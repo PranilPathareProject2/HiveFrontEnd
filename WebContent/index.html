@@ -24,11 +24,11 @@ Latest Font Awesome CSS
 				</div>
 				<div class="col-xs-6">
 					<ul ng-controller="UserController as uctrl" class="nav navbar-nav pull-right topnavbar">
-						<li><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						<li><a href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a href="#/userprofile"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
-						<li><a ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-						<li><a href="#/"><span class="fa fa-users"></span> (0)</a></li>
+						<li><a ng-hide="userLoggedIn" href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a ng-hide="userLoggedIn" href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a ng-show="userLoggedIn" href="#/userprofile"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
+						<li><a ng-show="userLoggedIn" ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						<li><a ng-show="userLoggedIn" href="#/"><span class="fa fa-users"></span> Friend Requests</a></li>
 					</ul>
 					<div ng-show="userLoggedIn">
 						<p>Welcome {{loggedInUser}}</p>
@@ -159,9 +159,11 @@ Latest Font Awesome CSS
 	<script src="Blog/js/BlogController.js"></script>
 	<script src="User/js/UserController.js"></script>
 	<script src="Job/js/JobController.js"></script>
+	<script src="Friend/js/FriendController.js"></script>
 	
 	<!-- Local Services -->
 	<script src="User/js/UserService.js"></script>
 	<script src="Job/js/JobService.js"></script>
+	<script src="Friend/js/FriendService.js"></script>
 </body>
 </html>
