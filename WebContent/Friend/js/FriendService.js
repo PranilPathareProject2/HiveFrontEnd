@@ -14,6 +14,24 @@ app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, 
 			);
 		},
 	
+		getNewFriendRequests: function() {
+			return $http.get(url+'/getnewfriendrequests').then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		getSentFriendRequests: function() {
+			return $http.get(url+'/getsentfriendrequests').then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
 		addFriendRequest: function(friendusername) {
 			return $http.post(url+'/addfriendrequest/'+friendusername).then(
 				function(response){
@@ -23,18 +41,8 @@ app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, 
 			);
 		},
 		
-		/*updateJob: function(job) {
-			return $http.put(url+'/updatejob',job).then(
-				function(response){
-					response.data.posted_date = new Date(response.data.posted_date);
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		getMyAppliedJobs: function() {
-			return $http.get(url+'/getmyappliedjobs').then(
+		acceptFriend: function(username) {
+			return $http.put(url+'/acceptfriendrequest/'+username).then(
 				function(response){
 					return response.data;
 				},
@@ -42,8 +50,8 @@ app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, 
 			);
 		},
 		
-		getAllJobApplications: function() {
-			return $http.get(url+'/getalljobapplications').then(
+		rejectFriend: function(username) {
+			return $http.put(url+'/rejectfriendrequest/'+username).then(
 				function(response){
 					return response.data;
 				},
@@ -51,55 +59,22 @@ app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, 
 			);
 		},
 		
-		applyJob: function(job_id) {
-			return $http.post(url+'/applyjob/'+job_id).then(
+		getOnlineFriends: function() {
+			return $http.get(url+'/getonlinefriends').then(
 				function(response){
-					console.log(response.data);
 					return response.data;
 				},
 				null
 			);
 		},
 		
-		selectUser: function(job_id, username, reason) {
-			return $http.put(url+'/selectuser/'+job_id+'/'+username+'/'+reason).then(
+		unfriend: function(username) {
+			return $http.put(url+'/unfriend/'+username).then(
 				function(response){
-					console.log(response.data);
 					return response.data;
 				},
 				null
 			);
-		},
-		
-		callForInterview: function(job_id, username, reason) {
-			return $http.put(url+'/callforinterview/'+job_id+'/'+username+'/'+reason).then(
-				function(response){
-					console.log(response.data);
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		rejectJobApplication: function(job_id, username, reason) {
-			return $http.put(url+'/rejectjobapplication/'+job_id+'/'+username+'/'+reason).then(
-				function(response){
-					console.log(response.data);
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		getJobDetails: function(job_id) {
-			return $http.get(url+'/getjobdetails/'+job_id).then(
-				function(response){
-					response.data.posted_date = new Date(response.data.posted_date);
-					console.log(response.data);
-					return response.data;
-				},
-				null
-			);
-		}*/
+		}
 	};
 }]);

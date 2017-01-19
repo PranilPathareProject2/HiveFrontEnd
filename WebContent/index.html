@@ -28,7 +28,7 @@ Latest Font Awesome CSS
 						<li><a ng-hide="userLoggedIn" href="#/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 						<li><a ng-show="userLoggedIn" href="#/userprofile"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
 						<li><a ng-show="userLoggedIn" ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-						<li><a ng-show="userLoggedIn" href="#/"><span class="fa fa-users"></span> Friend Requests</a></li>
+						<li><a ng-show="userLoggedIn" href="#/friendrequests"><span class="fa fa-users"></span> Friend Requests</a></li>
 					</ul>
 					<div ng-show="userLoggedIn">
 						<p>Welcome {{loggedInUser}}</p>

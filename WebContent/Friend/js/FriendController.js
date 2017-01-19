@@ -2,6 +2,9 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 	var self = this;
 	self.friend = {"friend_id":"", "user_username":"", "friend_username":"", "is_online":"", "status":"", "errorCode":"", "errorMessage":""};
 	self.friends = [];
+	self.getnewfriendrequests = [];
+	self.getsentfriendrequests = [];
+	self.onlinefriends = [];
 	
 	self.myFriends = function() {
 		console.log("myFriends method in controller started");
@@ -9,7 +12,15 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 			.myFriends()
 			.then(
 					function(fdata) {
-						self.friends = fdata;
+						console.log("erorr = "+fdata.errorMessage)
+						if(fdata.errorMessage == '')
+						{
+							self.friends = fdata;
+						}	
+						else
+						{	
+							alert(fdata.errorMessage);
+						}	
 					},
 					function(errorresponse) {
 						console.error("Error while fetching friends");
@@ -33,145 +44,93 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 			);
 	};
 	
-	/*self.submit = function() {
-		console.log("submit method in job controller started");
-		self.postJob(self.job);
-		self.reset();
-		console.log("submit method in job controller ended");
-	};
-	
-	self.reset = function() {
-		console.log("reset method in job controller started");
-		self.job = {"job_id":"", "job_title":"", "job_description":"", "posted_date":"", "job_designation":"", "job_salary":"", "job_location":"", "experience":"", "status":"", "errorCode":"", "errorMessage":""};	
-	};*/
-	
-	/*self.getJobDetails = function(job_id) {
-		console.log("getJobDetails method in controller started");
+	self.acceptFriend = function(username) {
+		console.log("acceptFriend method in controller started");
 		FriendService
-			.getJobDetails(job_id)
+			.acceptFriend(username)
 			.then(
-					function(jdata) {
-						$rootScope.selectedjob = jdata;
-						$location.path("/viewjobdetails")
+					function(fdata) {
+						self.getNewFriendRequests();
 					},
 					function(errorresponse) {
-						console.error("Error while fetching job details");
-					}
-			);
-	};
-		
-	self.updateJob = function(job) {
-		console.log("updateJob method in controller started");
-		FriendService
-			.updateJob(job)
-			.then(
-					function(jdata) {
-						self.job = jdata;
-					},
-					function(errorresponse) {
-						console.error("Error while updating job");
+						console.error("Error while accepting friend");
 					}
 			);
 	};
 	
-	self.applyJob = function(job_id) {
-		console.log("applyJob method in controller started");
+	self.rejectFriend = function(username) {
+		console.log("rejectFriend method in controller started");
 		FriendService
-			.applyJob(job_id)
+			.rejectFriend(username)
 			.then(
-					function(jdata) {
-						alert(jdata.errorMessage);
+					function(fdata) {
+						self.getNewFriendRequests();
 					},
 					function(errorresponse) {
-						console.error("Error while applying for job");
+						console.error("Error while rejecting friend");
 					}
 			);
 	};
 	
-	self.getMyAppliedJobs = function() {
-		console.log("getMyAppliedJobs method in controller started");
+	self.unfriend = function(username) {
+		console.log("unfriend method in controller started");
 		FriendService
-			.getMyAppliedJobs()
+			.unfriend(username)
 			.then(
-					function(d) {
-						self.jobapplications = d;
+					function(fdata) {
+						self.myFriends();
 					},
 					function(errorresponse) {
-						console.error("Error while fetching applied jobs");
+						console.error("Error while unfriending friend");
 					}
 			);
 	};
 	
-	self.getMyAppliedJobs();
-	
-	self.getAllJobApplications = function() {
-		console.log("getAllJobApplications method in controller started");
+	self.getNewFriendRequests = function() {
+		console.log("getNewFriendRequests method in controller started");
 		FriendService
-			.getAllJobApplications()
+			.getNewFriendRequests()
 			.then(
-					function(d) {
-						self.alljobapplications = d;
+					function(fdata) {
+						self.getnewfriendrequests = fdata;
 					},
 					function(errorresponse) {
-						console.error("Error while fetching applied jobs");
+						console.error("Error while fetching new friend requests");
 					}
 			);
 	};
 	
-	self.getAllJobApplications();
+	self.getNewFriendRequests();
 	
-	self.submitJobToUpdate = function() {
-		console.log("submitJobToUpdate method in controller started");
-		self.updateJob(self.job);
-		self.reset();
-		console.log("submitJobToUpdate method in controller ended");
-	};
-	
-	self.selectUser = function(job_id, username) {
-		console.log("selectUser method in controller started");
-		var reason = prompt("Enter remarks");
+	self.getSentFriendRequests = function() {
+		console.log("getSentFriendRequests method in controller started");
 		FriendService
-			.selectUser(job_id, username, reason)
+			.getSentFriendRequests()
 			.then(
-					function(jdata) {
-						alert(jdata.errorMessage);
-						self.getAllJobApplications();
+					function(fdata) {
+						self.getsentfriendrequests = fdata;
 					},
 					function(errorresponse) {
-						console.error("Error while selecting user for job");
+						console.error("Error while fetching sent friend requests");
 					}
 			);
 	};
 	
-	self.callForInterview = function(job_id, username) {
-		console.log("callForInterview method in controller started");
-		var reason = prompt("Enter remarks");
+	self.getSentFriendRequests();
+	
+	self.getOnlineFriends = function() {
+		console.log("getOnlineFriends method in controller started");
 		FriendService
-			.callForInterview(job_id, username, reason)
+			.getOnlineFriends()
 			.then(
-					function(jdata) {
-						alert(jdata.errorMessage);
-						self.getAllJobApplications();
+					function(fdata) {
+						self.onlinefriends = fdata;
 					},
 					function(errorresponse) {
-						console.error("Error while selecting user for job");
+						console.error("Error while fetching friends");
 					}
 			);
 	};
 	
-	self.rejectJobApplication = function(job_id, username) {
-		console.log("rejectJobApplication method in controller started");
-		var reason = prompt("Enter remarks");
-		FriendService
-			.rejectJobApplication(job_id, username, reason)
-			.then(
-					function(jdata) {
-						alert(jdata.errorMessage);
-						self.getAllJobApplications();
-					},
-					function(errorresponse) {
-						console.error("Error while selecting user for job");
-					}
-			);
-	};*/
+	self.getOnlineFriends();
 }]);

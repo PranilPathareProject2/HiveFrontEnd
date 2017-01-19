@@ -62,6 +62,7 @@ app.config(function($routeProvider){
 		templateUrl: 'Chat Forum/views/manage_forums.html'
 	})
 	
+	//Friend related starts
 	.when('/friends',{
 		templateUrl: 'Friend/views/my_friends.html'
 	})
@@ -73,6 +74,11 @@ app.config(function($routeProvider){
 	.when('/onlinefriends',{
 		templateUrl: 'Friend/views/online_friends.html'
 	})
+	
+	.when('/friendrequests',{
+		templateUrl: 'Friend/views/friend_requests.html'
+	})
+	//Friend related ends
 	
 	//Job related starts
 	.when('/viewjobs',{

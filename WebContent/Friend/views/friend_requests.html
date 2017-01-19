@@ -1,0 +1,56 @@
+<div ng-controller="FriendController as fctrl">
+	<div class="row">
+		<div class="col-sm-8">
+			<p>New friend requests</p>
+		</div>
+		<div class="col-sm-4">		
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th></th>
+					<th>Accept/Reject</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="friend in fctrl.getnewfriendrequests">
+					<td>{{friend.user_username}}</td>
+					<td></td>
+					<td><button ng-click="fctrl.acceptFriend(friend.user_username)" class="btn btn-success btn-xs">Accept</button> <button ng-click="fctrl.rejectFriend(friend.user_username)" class="btn btn-danger btn-xs">Reject</button></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<p>Sent friend requests</p>
+		</div>
+		<div class="col-sm-4">		
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th></th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="friend in fctrl.getsentfriendrequests">
+					<td>{{friend.friend_username}}</td>
+					<td></td>
+					<td>{{friend.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>

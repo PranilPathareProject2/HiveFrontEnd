@@ -1,3 +1,34 @@
 <div ng-controller="FriendController as fctrl">
-	{{fctrl.friends}}
+	<!-- <div class="alert alert-info alert-dismissable fade in">
+    	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    	{{fctrl.friends.errorMessage}}
+  	</div> -->
+	<div class="row">
+		<div class="col-sm-8">
+		</div>
+		<div class="col-sm-4">
+			<label>Search A Friend:</label>
+			<input type="text" ng-model="searchtext" class="form-control" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th></th>
+					<th>Unfriend</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="friend in fctrl.friends | filter: searchtext">
+					<td>{{friend}}</td>
+					<td></td>
+					<td><button ng-click="fctrl.unfriend(friend)" class="btn btn-danger btn-xs">Unfriend</button></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
 </div>
