@@ -19,7 +19,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in uctrl.users | filter: searchtext">
-					<td>{{user.firstname +' '+ user.lastname}}</td>
+					<td>{{user.username}}</td>
 					<td></td>
 					<td><button ng-controller="FriendController as fctrl" ng-click="fctrl.addFriendRequest(user.username)" class="btn btn-warning btn-xs">Add friend</button></td>
 				</tr>

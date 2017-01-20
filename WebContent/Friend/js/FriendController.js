@@ -1,10 +1,10 @@
 app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$http', '$location', '$cookies', function($scope, FriendService, $rootScope, $http, $location, $cookies){
 	var self = this;
 	self.friend = {"friend_id":"", "user_username":"", "friend_username":"", "is_online":"", "status":"", "errorCode":"", "errorMessage":""};
-	self.friends = [];
+	//self.friends = [];
 	self.getnewfriendrequests = [];
 	self.getsentfriendrequests = [];
-	self.onlinefriends = [];
+	//self.onlinefriends = [];
 	
 	self.myFriends = function() {
 		console.log("myFriends method in controller started");
@@ -12,14 +12,17 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 			.myFriends()
 			.then(
 					function(fdata) {
-						console.log("erorr = "+fdata.errorMessage)
-						if(fdata.errorMessage == '')
+						
+						if(fdata[0].errorMessage != undefined)	
 						{
-							self.friends = fdata;
+							alert(fdata[0].errorMessage);
+							$location.path("/friends");
+							delete $rootScope.friends;
 						}	
 						else
 						{	
-							alert(fdata.errorMessage);
+							$rootScope.friends = fdata;
+							$location.path("/friends");
 						}	
 					},
 					function(errorresponse) {
@@ -27,8 +30,6 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 					}
 			);
 	};
-	
-	self.myFriends();
 		
 	self.addFriendRequest = function(friendusername) {
 		console.log("addFriendRequest method in controller started");
@@ -92,23 +93,44 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 			.getNewFriendRequests()
 			.then(
 					function(fdata) {
-						self.getnewfriendrequests = fdata;
+						
+						if(fdata[0].errorMessage != undefined)	
+						{
+							alert(fdata[0].errorMessage);
+							$location.path('/friendrequests');
+							self.getnewfriendrequests = [];
+						}	
+						else
+						{	
+							self.getnewfriendrequests = fdata;
+							$location.path('/friendrequests');
+						}
 					},
 					function(errorresponse) {
 						console.error("Error while fetching new friend requests");
 					}
 			);
 	};
-	
-	self.getNewFriendRequests();
-	
+
 	self.getSentFriendRequests = function() {
 		console.log("getSentFriendRequests method in controller started");
 		FriendService
 			.getSentFriendRequests()
 			.then(
 					function(fdata) {
-						self.getsentfriendrequests = fdata;
+						
+						if(fdata[0].errorMessage != undefined)	
+						{
+							alert(fdata[0].errorMessage);
+							$location.path('/friendrequests');
+							self.getsentfriendrequests = [];
+						}	
+						else
+						{	
+							self.getsentfriendrequests = fdata;
+							$location.path('/friendrequests');
+						}
+						
 					},
 					function(errorresponse) {
 						console.error("Error while fetching sent friend requests");
@@ -116,15 +138,25 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 			);
 	};
 	
-	self.getSentFriendRequests();
-	
 	self.getOnlineFriends = function() {
 		console.log("getOnlineFriends method in controller started");
 		FriendService
 			.getOnlineFriends()
 			.then(
 					function(fdata) {
-						self.onlinefriends = fdata;
+						
+						if(fdata[0].errorMessage != undefined)	
+						{
+							alert(fdata[0].errorMessage);
+							$location.path('/onlinefriends');
+							delete $rootScope.onlinefriends;
+						}	
+						else
+						{	
+							$rootScope.onlinefriends = fdata;
+							$location.path('/onlinefriends');
+						}
+						
 					},
 					function(errorresponse) {
 						console.error("Error while fetching friends");
@@ -132,5 +164,4 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 			);
 	};
 	
-	self.getOnlineFriends();
 }]);

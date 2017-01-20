@@ -1,8 +1,4 @@
 <div ng-controller="FriendController as fctrl">
-	<!-- <div class="alert alert-info alert-dismissable fade in">
-    	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    	{{fctrl.friends.errorMessage}}
-  	</div> -->
 	<div class="row">
 		<div class="col-sm-8">
 		</div>
@@ -22,7 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="friend in fctrl.friends | filter: searchtext">
+				<tr ng-repeat="friend in friends | filter: searchtext">
 					<td>{{friend}}</td>
 					<td></td>
 					<td><button ng-click="fctrl.unfriend(friend)" class="btn btn-danger btn-xs">Unfriend</button></td>

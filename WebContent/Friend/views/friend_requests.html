@@ -1,12 +1,12 @@
 <div ng-controller="FriendController as fctrl">
 	<div class="row">
 		<div class="col-sm-8">
-			<p>New friend requests</p>
+			<button class="btn btn-primary" ng-click="fctrl.getNewFriendRequests(); showme=false">New friend requests</button>
 		</div>
 		<div class="col-sm-4">		
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" ng-hide="showme">
 		<div class="table-responsive">
 		<table class="table">
 			<thead>
@@ -26,14 +26,15 @@
 		</table>
 		</div>
 	</div>
+	<div style="padding-top: 10px"></div>
 	<div class="row">
 		<div class="col-sm-8">
-			<p>Sent friend requests</p>
+			<button class="btn btn-primary" ng-click="fctrl.getSentFriendRequests(); showme=true">Sent friend requests</button>
 		</div>
 		<div class="col-sm-4">		
 		</div>
 	</div>
-	<div class="row">
+	<div ng-show="showme" class="row">
 		<div class="table-responsive">
 		<table class="table">
 			<thead>

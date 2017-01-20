@@ -30,8 +30,8 @@ Latest Font Awesome CSS
 						<li><a ng-show="userLoggedIn" ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						<li><a ng-show="userLoggedIn" href="#/friendrequests"><span class="fa fa-users"></span> Friend Requests</a></li>
 					</ul>
-					<div ng-show="userLoggedIn">
-						<p>Welcome {{loggedInUser}}</p>
+					<div style="clear: both;" ng-show="userLoggedIn">
+						<p style="color: #FFA10E">Welcome {{loggedInUser}}</p>
 					</div>
 				</div>
 			</div>
@@ -67,9 +67,9 @@ Latest Font Awesome CSS
 				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown">Friend <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#/friends">My Friends</a></li>
-						<li><a href="#/onlinefriends">Friends Online</a></li>
+					<ul ng-controller="FriendController as fctrl" class="dropdown-menu">
+						<li><a href ng-click="fctrl.myFriends()">My Friends</a></li>
+						<!-- <li><a href ng-click="fctrl.getOnlineFriends()">Online Friends</a></li> -->
 						<li><a href="#/findafriend">Find A Friend</a></li>
 					</ul>
 				</li>
