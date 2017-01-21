@@ -125,6 +125,10 @@ app.config(function($routeProvider){
 	})
 	//Admin related end
 	
+	.when('/chat',{
+		templateUrl: 'Chat/views/chat.html'
+	})
+	
 	.otherwise({
 		redirectTo: '/'
 	});
