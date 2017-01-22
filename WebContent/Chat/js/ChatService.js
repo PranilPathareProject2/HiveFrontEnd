@@ -10,7 +10,7 @@ app.service("ChatService", function($q, $timeout) {
     
     service.RECONNECT_TIMEOUT = 30000;
     service.SOCKET_URL = "/HiveBackEnd/chat";
-    service.CHAT_TOPIC = "/user/queue/message";
+    service.CHAT_TOPIC = "/user/queue/chatmessage";
     service.CHAT_BROKER = "/app/chat";
     
     service.receiveMessage = function() {
@@ -21,12 +21,10 @@ app.service("ChatService", function($q, $timeout) {
     service.send = function(message) {
     	console.log("send message")
     	var message_id = Math.floor(Math.random() * 1000000);
-    	var friend_id = "Pranil";
 	      socket.stomp.send(service.CHAT_BROKER, {
 	        priority: 9
 	      }, JSON.stringify({
 	        message: message,
-	        friend_id: friend_id,
 	        message_id: message_id
 	      }));
 	      messageIds.push(message_id);
@@ -42,7 +40,7 @@ app.service("ChatService", function($q, $timeout) {
       var message = JSON.parse(data);
       var out = {};
       out.message = message.message;
-      out.friend_id = message.friend_id;
+      //out.friend_id = message.friend_id;
       out.message_date = new Date(message.message_date);
       /*if (_.contains(messageIds, message.message_id)) {
         out.self = true;

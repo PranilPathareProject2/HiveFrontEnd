@@ -1,10 +1,5 @@
-<div ng-controller="UserController as uctrl">
-	<div ng-hide="uctrl.user.errorMessage == ''">
-		<div class="alert alert-info alert-dismissable fade in">
-    		<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    		{{uctrl.user.errorMessage}}
-  		</div>
- 	</div>
+<div class="container">
+<div class="row" ng-controller="UserController as uctrl">
 	<div class="col-sm-6 col-sm-offset-3 jumbotron">
 		<h2 class="text-center">Sign Up</h2>
 		<form name="signupform" ng-submit="uctrl.submit()" novalidate>
@@ -83,7 +78,7 @@
 			</div>
 			<div class="form-group">
 				<label for="dob">Date Of Birth:</label> 
-				<input type="date" id="dob" name="dob" placeholder="Enter Date Of Birth (dd/mm/yyyy)" class="form-control" required="required" ng-model="uctrl.user.date_of_birth" />
+				<input type="date" id="dob" name="dob" placeholder="Enter Date of Birth (dd/MM/yyyy)" class="form-control" required="required" ng-model="uctrl.user.date_of_birth" />
 				<span style="color: red;" ng-show="signupform.dob.$dirty && signupform.dob.$invalid  && !signupform.$submitted">
 					<span ng-show="signupform.dob.$error.required">Date Of Birth is required</span>
 				</span>
@@ -126,9 +121,9 @@
 				<input type="submit" ng-disabled="signupform.$invalid" class="btn btn-primary btn-block">
 			</div>
 		</form>
-		
 	</div>
-	<div id="privacypolicy" class="modal fade">
+</div>
+<div id="privacypolicy" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
