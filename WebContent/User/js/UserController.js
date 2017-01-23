@@ -1,6 +1,6 @@
 app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http', '$location', '$cookies', function($scope, UserService, $rootScope, $http, $location, $cookies){
 	var self = this;
-	self.user = {"username":"", "firstname":"", "lastname":"", "date_of_birth":"", "email_id":"", "gender":"", "contact_no":"", "address":"", "state":"", "city":"", "pincode":"", "experience":"", "qualification":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
+	self.user = {"username":"", "firstname":"", "lastname":"", "date_of_birth":"", "email_id":"", "gender":"", "contact_no":"", "address":"", "state":"", "city":"", "pincode":"", "experience":"", "qualification":"", "status":"", "role":"", "password":"", "multipartfile":"", "errorCode":"", "errorMessage":""};
 	self.usercred = {"username":"", "reason":"", "status":"", "role":"", "password":"", "errorCode":"", "errorMessage":""};
 	self.users = [];
 	self.usercreds = [];
@@ -173,6 +173,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			.then(
 					function(udata) {
 						self.user = udata;
+						console.log("error ="+self.user.errorMessage);
 					},
 					function(errorresponse) {
 						console.error("Error while fetching user");
@@ -188,7 +189,7 @@ app.controller('UserController', [ '$scope', 'UserService', '$rootScope', '$http
 			.updateUser(user)
 			.then(
 					function(udata) {
-						self.user.errorMessage = udata.errorMessage;
+						self.user = udata;
 					},
 					function(errorresponse) {
 						console.error("Error while updating user");

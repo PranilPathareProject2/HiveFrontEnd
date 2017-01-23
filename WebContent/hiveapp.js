@@ -1,4 +1,4 @@
-var app = angular.module('hiveapp', ['ngRoute', 'ngCookies']);
+var app = angular.module('hiveapp', ['ngRoute', 'ngCookies', 'ngFileUpload']);
 
 app.config(function($routeProvider){
 	$routeProvider

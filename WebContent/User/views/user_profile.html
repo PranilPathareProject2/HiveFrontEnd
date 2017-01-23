@@ -1,14 +1,23 @@
 <div ng-controller="UserController as uctrl">
-	<div ng-hide="uctrl.user.errorMessage == ''">
+	<div ng-hide="!uctrl.user.errorMessage">
 			<div class="alert alert-info alert-dismissable fade in">
 	    		<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	    		{{uctrl.user.errorMessage}}
 	  		</div>
   	</div>
 	<div class="jumbotron">
-			<h2 class="text-center">My Profile</h2>
+			<div class="row">
+				<div class="form-group col-sm-4">
+				</div>
+				<div class="form-group col-sm-4">
+					<h2 class="text-center">My Profile</h2>
+				</div>
+				<div class="form-group col-sm-4">
+					<img class="pull-right" alt="Profile Picture" ng-src="./resources/images/{{uctrl.user.username}}.jpg" height="150px" width="150px" />
+				</div>
+			</div>
 			<!-- Profile form starts -->
-			<form name="profileform" ng-submit="uctrl.submitProfileToUpdate()" novalidate>
+			<form name="profileform" ng-submit="uctrl.submitProfileToUpdate()" novalidate method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="form-group col-sm-4">
 						<label for="fname">First Name:</label>
@@ -106,10 +115,12 @@
 						<span ng-show="profileform.gender.$error.required">Gender is required</span>
 					</span>
 				</div>
-				<!-- <div class="form-group col-sm-4">
-					<label>User Type:</label>
-    				<input type="text" name="role" class="form-control" ng-model="uctrl.user.role" value="{{uctrl.user.role}}" required="required" readonly="readonly">
-				</div> -->
+				<div class="form-group col-sm-4" ng-controller="UploadController as uploadctrl">
+					<label>Profile Picture:</label>
+					<input type="file" ngf-select class="form-control" ng-model="picFile" name="file" accept="image/*" ngf-max-size="20MB" />
+					<p></p>
+    				<button type="button" class="btn btn-primary" ng-click="uploadctrl.upload(picFile, uctrl.user.username)">Upload</button>
+				</div>
 				</div>
 				<div style="padding-top: 10px">
 					<input type="submit" ng-disabled="profileform.$invalid" class="btn btn-primary btn-block" value="Update">
