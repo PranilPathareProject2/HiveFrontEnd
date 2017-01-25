@@ -1,3 +1,20 @@
-<div>
-	In view bulletins
+<div class="container" ng-controller="BulletinController as blctrl">
+	<div class="row">
+		<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Bulletin Title</th>
+					<th>Bulletin Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="bulletin in allbulletins">
+					<td>{{bulletin.bulletin_title}}</td>
+					<td>{{bulletin.bulletin_description}}</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
 </div>
