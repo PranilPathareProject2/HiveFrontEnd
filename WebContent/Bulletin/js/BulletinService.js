@@ -1,7 +1,7 @@
 'use strict';
 
-app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, $rootScope){
-	console.log("In FriendService.....");
+app.service('BulletinService', [ '$http', '$q', '$rootScope', function($http, $q, $rootScope){
+	console.log("In BulletinService.....");
 	var url = "http://localhost:8081/HiveBackEnd";
 	
 	return {
@@ -24,7 +24,7 @@ app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, 
 		},
 		
 		addBulletin: function(bulletin) {
-			return $http.post(url+'/addbulletin/'+bulletin).then(
+			return $http.post(url+'/addbulletin/',bulletin).then(
 				function(response){
 					return response.data;
 				},
@@ -60,7 +60,7 @@ app.service('FriendService', [ '$http', '$q', '$rootScope', function($http, $q, 
 		},
 		
 		updateBulletin: function(bulletin) {
-			return $http.put(url+'/updatebulletin/'+bulletin).then(
+			return $http.put(url+'/updatebulletin/',bulletin).then(
 				function(response){
 					return response.data;
 				},

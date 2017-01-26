@@ -85,9 +85,9 @@ Latest Font Awesome CSS
 					<a class="dropdown-toggle" data-toggle="dropdown">Notifications <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href ng-controller="BulletinController as blctrl" ng-click="blctrl.allBulletins()">Bulletins</a></li>
-						<li><a href="#/viewevents">Events</a></li>
+						<li><a href ng-controller="EventController as ectrl" ng-click="ectrl.allEvents()">Events</a></li>
 						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href ng-controller="BulletinController as blctrl" ng-click="blctrl.allBulletinsForAdmin()">Manage Bulletins</a></li>
-						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageevents">Manage Events</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href ng-controller="EventController as ectrl" ng-click="ectrl.allEventsForAdmin()">Manage Events</a></li>
 					</ul>
 				</li>
 				<li ng-show="loggedInUserRole == 'ROLE_ADMIN'" class="dropdown">
@@ -173,6 +173,7 @@ Latest Font Awesome CSS
 	<script src="Chat/js/ChatController.js"></script>
 	<script src="Upload/js/UploadController.js"></script>
 	<script src="Bulletin/js/BulletinController.js"></script>
+	<script src="Event/js/EventController.js"></script>
 	
 	<!-- Local Services -->
 	<script src="User/js/UserService.js"></script>
@@ -181,6 +182,7 @@ Latest Font Awesome CSS
 	<script src="Chat Forum/js/ChatForumService.js"></script>
 	<script src="Chat/js/ChatService.js"></script>
 	<script src="Bulletin/js/BulletinService.js"></script>
+	<script src="Event/js/EventService.js"></script>
 	
 </body>
 </html>

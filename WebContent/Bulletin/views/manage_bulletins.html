@@ -1,7 +1,7 @@
 <div class="container" ng-controller="BulletinController as blctrl">
-	<div class="row">
+	<div class="row" ng-hide="showUpdateForm">
 		<div class="col-sm-6 col-sm-offset-3 jumbotron">
-			<h1 class="text-center">Manage Bulletin</h1>
+			<h3 class="text-center">Manage Bulletin</h3>
 			<form name="bulletinform" ng-submit="blctrl.submitBulletinFormToAdd()" novalidate>
 				<div class="form-group">
 					<label for="title">Title:</label>
@@ -23,9 +23,9 @@
 			</form>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" ng-show="showUpdateForm">
 		<div class="col-sm-6 col-sm-offset-3 jumbotron">
-			<h1 class="text-center">Manage Bulletin</h1>
+			<h3 class="text-center">Manage Bulletin</h3>
 			<form name="bulletinform" ng-submit="blctrl.submitBulletinFormToUpdate()" novalidate>
 				<div class="form-group">
 					<label for="title">Title:</label>
@@ -60,12 +60,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="bulletin in bulletins">
+				<tr ng-repeat="bulletin in bulletins | orderBy: 'bulletin_id'">
 					<td>{{bulletin.bulletin_title}}</td>
 					<td>{{bulletin.bulletin_description}}</td>
 					<td>{{bulletin.status}}</td>
-					<td><button class="btn btn-success btn-xs" ng-click="blctrl.getBulletin(bulletin.bulletin_id)"></button></td>
-					<td><button class="btn btn-success btn-xs" ng-click="blctrl.activateBulletin(bulletin.bulletin_id)"></button> <button class="btn btn-danger btn-xs" ng-click="blctrl.deactivateBulletin(bulletin.bulletin_id)"></button></td>
+					<td><button class="btn btn-success btn-xs" ng-click="blctrl.getBulletin(bulletin.bulletin_id)">Edit</button></td>
+					<td><button class="btn btn-success btn-xs" ng-click="blctrl.activateBulletin(bulletin.bulletin_id)">Activate</button> <button class="btn btn-danger btn-xs" ng-click="blctrl.deactivateBulletin(bulletin.bulletin_id)">Deactivate</button></td>
 				</tr>
 			</tbody>
 		</table>

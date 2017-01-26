@@ -1,8 +1,8 @@
 app.controller('BulletinController', [ '$scope', 'BulletinService', '$rootScope', '$http', '$location', '$cookies', function($scope, BulletinService, $rootScope, $http, $location, $cookies){
 	var self = this;
 	self.bulletin = {"bulletin_id":"", "bulletin_title":"", "bulletin_description":"", "status":"", "errorCode":"", "errorMessage":""};
-	$rootScope.bulletins = [];
-	self.allbulletins = [];
+	//$rootScope.bulletins = [];
+	//self.allbulletins = [];
 	
 	self.allBulletinsForAdmin = function() {
 		console.log("allBulletinsForAdmin method in controller started");
@@ -48,8 +48,9 @@ app.controller('BulletinController', [ '$scope', 'BulletinService', '$rootScope'
 		BulletinService
 			.addBulletin(bulletin)
 			.then(
-					function(fdata) {
-						alert(fdata.errorMessage);
+					function(bdata) {
+						alert(bdata.errorMessage);
+						self.allBulletinsForAdmin();
 					},
 					function(errorresponse) {
 						console.error("Error while adding bulletin");
@@ -99,6 +100,7 @@ app.controller('BulletinController', [ '$scope', 'BulletinService', '$rootScope'
 						else
 						{	
 							self.bulletin = bldata;
+							$scope.showUpdateForm = true;
 						}
 					},
 					function(errorresponse) {
@@ -114,6 +116,8 @@ app.controller('BulletinController', [ '$scope', 'BulletinService', '$rootScope'
 			.then(
 					function(bldata) {
 						alert(bldata.errorMessage);
+						self.allBulletinsForAdmin();
+						$scope.showUpdateForm = false;
 					},
 					function(errorresponse) {
 						console.error("Error while updating bulletin");
@@ -137,7 +141,7 @@ app.controller('BulletinController', [ '$scope', 'BulletinService', '$rootScope'
 	
 	self.resetbulletinform = function() {
 		console.log("reset method in bulletin controller started");
-		self.bulletin = {"bulletin_id":"", "bulletin_title":"", "bulletin_description":"", "status":"", "errorCode":"", "errorMessage":""};	
+		self.bulletin = {"bulletin_id":"", "bulletin_title":"", "bulletin_description":"", "status":"", "errorCode":"", "errorMessage":""};
 	};
 	
 }]);
