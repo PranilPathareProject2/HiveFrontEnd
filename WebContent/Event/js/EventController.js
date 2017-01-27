@@ -97,6 +97,7 @@ app.controller('EventController', [ '$scope', 'EventService', '$rootScope', '$ht
 						}	
 						else
 						{	
+							bldata.event_date = new Date(bldata.event_date);
 							self.event = bldata;
 							$scope.showUpdateForm = true;
 						}

@@ -1,73 +1,102 @@
 <div class="container" ng-controller="EventController as ectrl">
 	<div class="row" ng-hide="showUpdateForm">
-		<div class="col-sm-6 col-sm-offset-3 jumbotron">
+		<div class="jumbotron">
 			<h3 class="text-center">Manage Event</h3>
 			<form name="eventform" ng-submit="ectrl.submitEventFormToAdd()" novalidate>
 				<div class="row">
 					<div class="form-group col-sm-4">
-						<label for="fname">Event Name:</label>
-						<input type="text" id="fname" name="firstname" class="form-control" placeholder="Enter First Name" required="required" pattern="^[A-Za-z]*$" ng-model="uctrl.user.firstname" value="{{uctrl.user.firstname}}" />
-						<span style="color: red;" ng-show="profileform.firstname.$dirty && profileform.firstname.$invalid && !profileform.$submitted">
-							<span ng-show="profileform.firstname.$error.required">First name is required</span>
-							<span ng-show="profileform.firstname.$error.pattern">Invalid first name</span>
+						<label for="name">Event Name:</label>
+						<input type="text" id="name" name="name" class="form-control" placeholder="Enter Event Name" required="required" ng-model="ectrl.event.event_name" value="{{ectrl.event.event_name}}" />
+						<span style="color: red;" ng-show="eventform.name.$dirty && eventform.name.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.name.$error.required">Event name is required</span>
 						</span>
 					</div>
 					<div class="form-group col-sm-4">
-						<label for="lname">Event Description:</label>
-						<input type="text" id="lname" name="lastname" class="form-control" placeholder="Enter Last Name" required="required" pattern="^[A-Za-z]*$" ng-model="uctrl.user.lastname" value="{{uctrl.user.lastname}}" />
-						<span style="color: red;" ng-show="profileform.lastname.$dirty && profileform.lastname.$invalid && !profileform.$submitted">
-							<span ng-show="profileform.lastname.$error.required">Last name is required</span>
-							<span ng-show="profileform.firstname.$error.pattern">Invalid last name </span>
+						<label for="description">Event Description:</label>
+						<input type="text" id="description" name="description" class="form-control" placeholder="Enter Event Description" required="required" ng-model="ectrl.event.event_description" value="{{ectrl.event.event_description}}" />
+						<span style="color: red;" ng-show="eventform.lastname.$dirty && eventform.lastname.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.lastname.$error.required">Event description is required</span>
 						</span>
 					</div>
 					<div class="form-group col-sm-4">
-						<label for="usrname">Event Date:</label>
-						<input type="text" id="usrname" name="username" class="form-control" placeholder="Enter Registered User Name" required="required" ng-model="uctrl.user.username" readonly="readonly" value="{{uctrl.user.username}}" />
+						<label for="date">Event Date:</label>
+						<input type="date" id="date" name="date" class="form-control" placeholder="Enter Event Date" required="required" ng-model="ectrl.event.event_date" value="{{ectrl.event.event_date}}" />
+						<span style="color: red;" ng-show="eventform.date.$dirty && eventform.date.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.date.$error.required">Event description is required</span>
+						</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-4">
-						<label for="email">Event Time:</label>
-						<input type="email" id="email" name="emailid" class="form-control" placeholder="Enter Email ID" required="required" ng-model="uctrl.user.email_id" value="{{uctrl.user.email_id}}" />
-						<span style="color: red;" ng-show="profileform.emailid.$dirty && profileform.emailid.$invalid && !profileform.$submitted">
-							<span ng-show="profileform.emailid.$error.required">Email ID is required</span>
-							<span ng-show="profileform.emailid.$error.email">Invalid Email ID</span>
+						<label for="time">Event Time:</label>
+						<input type="text" id="time" name="time" class="form-control" placeholder="Enter Event Time" required="required" ng-model="ectrl.event.event_time" value="{{ectrl.event.event_time}}" />
+						<span style="color: red;" ng-show="eventform.time.$dirty && eventform.time.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.time.$error.required">Event date is required</span>
 						</span>
 					</div>
 					<div class="form-group col-sm-4">
-						<label for="address">Event Venue:</label> 
-						<textarea id="address" rows="3" name="address" placeholder="Enter Address" class="form-control" required="required" ng-model="uctrl.user.address" value="{{uctrl.user.address}}" ></textarea>
-						<span style="color: red;" ng-show="profileform.address.$dirty && profileform.address.$invalid && !profileform.$submitted">
-							<span ng-show="profileform.address.$error.required">Address is required</span>
+						<label for="venue">Event Venue:</label> 
+						<textarea id="venue" rows="3" name="venue" placeholder="Enter Event Venue" class="form-control" required="required" ng-model="ectrl.event.event_venue" value="{{ectrl.event.event_venue}}" ></textarea>
+						<span style="color: red;" ng-show="eventform.venue.$dirty && eventform.venue.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.venue.$error.required">Event venue is required</span>
 						</span>
 					</div>
 				</div>
-				<div style="padding-top: 10px">
-					<input ng-disabled="eventform.$invalid" type="submit" value="Add Event" class="btn btn-primary btn-block">
+				<div class="row">
+					<div class="col-sm-4 col-sm-offset-4">
+						<input ng-disabled="eventform.$invalid" type="submit" value="Add Event" class="btn btn-primary btn-block">
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="row" ng-show="showUpdateForm">
-		<div class="col-sm-6 col-sm-offset-3 jumbotron">
+		<div class="jumbotron">
 			<h3 class="text-center">Manage Event</h3>
 			<form name="eventform" ng-submit="ectrl.submitEventFormToUpdate()" novalidate>
-				<div class="form-group">
-					<label for="title">Title:</label>
-					<input type="text" id="title" name="title" class="form-control" placeholder="Enter Event Title" required="required" ng-model="ectrl.event.event_title" value="{{ectrl.event.event_title}}" />
-					<span style="color: red;" ng-show="eventform.title.$dirty && eventform.title.$invalid">
-						<span ng-show="eventform.title.$error.required">Title is required</span>
-					</span>
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<label for="name">Event Name:</label>
+						<input type="text" id="name" name="name" class="form-control" placeholder="Enter Event Name" required="required" ng-model="ectrl.event.event_name" value="{{ectrl.event.event_name}}" />
+						<span style="color: red;" ng-show="eventform.name.$dirty && eventform.name.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.name.$error.required">Event name is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="description">Event Description:</label>
+						<input type="text" id="description" name="description" class="form-control" placeholder="Enter Event Description" required="required" ng-model="ectrl.event.event_description" value="{{ectrl.event.event_description}}" />
+						<span style="color: red;" ng-show="eventform.lastname.$dirty && eventform.lastname.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.lastname.$error.required">Event description is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="date">Event Date:</label>
+						<input type="date" id="date" name="date" class="form-control" placeholder="Enter Event Date" required="required" ng-model="ectrl.event.event_date" value="{{ectrl.event.event_date}}" />
+						<span style="color: red;" ng-show="eventform.date.$dirty && eventform.date.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.date.$error.required">Event description is required</span>
+						</span>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="description">Description:</label> 
-					<input type="text" id="description" name="description" placeholder="Enter Event Description" class="form-control" required="required" ng-model="ectrl.event.event_description" value="{{ectrl.event.event_description}}" />
-					<span style="color: red;" ng-show="eventform.description.$dirty && eventform.description.$invalid">
-						<span ng-show="eventform.description.$error.required">Description is required</span>
-					</span>
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<label for="time">Event Time:</label>
+						<input type="text" id="time" name="time" class="form-control" placeholder="Enter Event Time" required="required" ng-model="ectrl.event.event_time" value="{{ectrl.event.event_time}}" />
+						<span style="color: red;" ng-show="eventform.time.$dirty && eventform.time.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.time.$error.required">Event date is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="venue">Event Venue:</label> 
+						<textarea id="venue" rows="3" name="venue" placeholder="Enter Event Venue" class="form-control" required="required" ng-model="ectrl.event.event_venue" value="{{ectrl.event.event_venue}}" ></textarea>
+						<span style="color: red;" ng-show="eventform.venue.$dirty && eventform.venue.$invalid && !eventform.$submitted">
+							<span ng-show="eventform.venue.$error.required">Event venue is required</span>
+						</span>
+					</div>
 				</div>
-				<div style="padding-top: 10px">
-					<input ng-disabled="eventform.$invalid" type="submit" value="Update Event" class="btn btn-primary btn-block">
+				<div class="row">
+					<div class="col-sm-4 col-sm-offset-4">
+						<input ng-disabled="eventform.$invalid" type="submit" value="Update Event" class="btn btn-primary btn-block">
+					</div>
 				</div>
 			</form>
 		</div>
