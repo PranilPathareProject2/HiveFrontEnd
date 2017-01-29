@@ -51,18 +51,18 @@ Latest Font Awesome CSS
 				<li><a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown">Blog <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#/createblog">Create Blog</a></li>
-						<li><a href="#/viewblogs">View Blogs</a></li>
-						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageblogs">Manage Blogs</a></li>
+					<ul ng-controller="BlogController as bctrl" class="dropdown-menu">
+						<li><a href ng-click="bctrl.allBlogsForUser()">Create Blog</a></li>
+						<li><a href ng-click="bctrl.allBlogs()">View Blogs</a></li>
+						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href ng-click="bctrl.allBlogsForAdmin()">Manage Blogs</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown">Forum <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#/createforum">Create Forum</a></li>
-						<li><a href="#/viewforums">View Forums</a></li>
-						<li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageforums">Manage Forums</a></li>
+						<!-- <li><a href="#/createforum">Create Forum</a></li> -->
+						<li><a href="#/viewforums">Discuss in Forum</a></li>
+						<!-- <li ng-show="loggedInUserRole == 'ROLE_ADMIN'"><a href="#/manageforums">Manage Forums</a></li> -->
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -174,6 +174,7 @@ Latest Font Awesome CSS
 	<script src="Upload/js/UploadController.js"></script>
 	<script src="Bulletin/js/BulletinController.js"></script>
 	<script src="Event/js/EventController.js"></script>
+	<script src="Blog/js/BlogController.js"></script>
 	
 	<!-- Local Services -->
 	<script src="User/js/UserService.js"></script>
@@ -183,6 +184,7 @@ Latest Font Awesome CSS
 	<script src="Chat/js/ChatService.js"></script>
 	<script src="Bulletin/js/BulletinService.js"></script>
 	<script src="Event/js/EventService.js"></script>
+	<script src="Blog/js/BlogService.js"></script>
 	
 </body>
 </html>

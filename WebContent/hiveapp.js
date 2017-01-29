@@ -39,6 +39,11 @@ app.config(function($routeProvider){
 		controller: 'BlogController'	
 	})
 	
+	.when('/selectedblog',{
+		templateUrl: 'Blog/views/selected_blog.html',
+		controller: 'BlogController'	
+	})
+	
 	.when('/viewblogs',{
 		templateUrl: 'Blog/views/view_blogs.html',
 		controller: 'BlogController'

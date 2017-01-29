@@ -1,4 +1,22 @@
-<div ng-controller="BlogController">
-	<p>In View Blogs</p>
-	{{message}}
+<div ng-controller="BlogController as bctrl">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Created By</th>
+					<th>Published On</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="blog in allblogs | orderBy:'blog_id'">
+					<td>{{blog.blog_title}}</td>
+					<td>{{blog.created_by}}</td>
+					<td>{{blog.published_on}}</td>
+					<td><button class="btn btn-warning btn-xs">View</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
