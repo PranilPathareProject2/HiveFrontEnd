@@ -30,6 +30,15 @@ app.service('BlogService', [ '$http', '$q', '$rootScope', function($http, $q, $r
 				},
 				null
 			);
+		},
+		
+		getBlogToDisplay: function(blog_id) {
+			return $http.get(url+'/getblogtodisplay/'+blog_id).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
 		}
 		
 		/*addBlog: function(blog) {

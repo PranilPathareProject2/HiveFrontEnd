@@ -14,7 +14,7 @@
 					<td>{{blog.blog_title}}</td>
 					<td>{{blog.created_by}}</td>
 					<td>{{blog.published_on}}</td>
-					<td><button class="btn btn-warning btn-xs">View</button></td>
+					<td><button ng-click="bctrl.getBlogToDisplay(blog.blog_id)" class="btn btn-warning btn-xs">View</button></td>
 				</tr>
 			</tbody>
 		</table>
