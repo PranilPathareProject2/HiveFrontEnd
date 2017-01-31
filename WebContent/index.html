@@ -30,8 +30,8 @@ Latest Font Awesome CSS
 						<li><a ng-show="userLoggedIn" ng-click="uctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 						<li><a ng-show="userLoggedIn" href="#/friendrequests"><span class="fa fa-users"></span> Friend Requests</a></li>
 					</ul>
-					<div style="clear: both;" ng-show="userLoggedIn">
-						<p style="color: #FFA10E">Welcome {{loggedInUser}}</p>
+					<div class="pull-right" style="clear: right;" ng-show="userLoggedIn">
+						<p style="color: #FFA10E; padding-top: 20px; padding-right: 20px;">Welcome {{loggedInUser}}</p>
 					</div>
 				</div>
 			</div>

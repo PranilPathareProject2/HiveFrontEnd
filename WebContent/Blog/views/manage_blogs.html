@@ -20,7 +20,7 @@
 					<td>{{blog.published_on | date : "dd/MM/y"}}</td>
 					<td>{{blog.status}}</td>
 					<td>{{blog.rejection_reason}}</td>
-					<td><button ng-show="blog.status == 'Rejected' || blog.status == 'New'" ng-click="bctrl.acceptBlog(blog.blog_id)" class="btn btn-success btn-xs">Accept</button> <button ng-show="blog.status == 'Accepted' || blog.status == 'New'" ng-click="bctrl.rejectBlog(blog.blog_id)" class="btn btn-danger btn-xs">Reject</button></td>
+					<td width="15%"><button ng-show="blog.status == 'Rejected' || blog.status == 'New'" ng-click="bctrl.acceptBlog(blog.blog_id)" class="btn btn-success btn-xs">Accept</button> <button ng-show="blog.status == 'Accepted' || blog.status == 'New'" ng-click="bctrl.rejectBlog(blog.blog_id)" class="btn btn-danger btn-xs">Reject</button></td>
 				</tr>
 			</tbody>
 		</table>
