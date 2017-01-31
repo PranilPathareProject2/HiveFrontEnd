@@ -8,19 +8,19 @@
 					<th>Created By</th>
 					<th>Published On</th>
 					<th>Status</th>
-					<th>Reason for Rejection</th>
+					<th>Rejection Reason</th>
 					<th>Accept/Reject</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="blog in blogs | orderBy:'blog_id'">
 					<td>{{blog.blog_title}}</td>
-					<td>{{blog.blog_description}}</td>
+					<td width="40%">{{blog.blog_description}}</td>
 					<td>{{blog.created_by}}</td>
-					<td>{{blog.published_on}}</td>
+					<td>{{blog.published_on | date : "dd/MM/y"}}</td>
 					<td>{{blog.status}}</td>
 					<td>{{blog.rejection_reason}}</td>
-					<td></td>
+					<td><button ng-show="blog.status == 'Rejected' || blog.status == 'New'" ng-click="bctrl.acceptBlog(blog.blog_id)" class="btn btn-success btn-xs">Accept</button> <button ng-show="blog.status == 'Accepted' || blog.status == 'New'" ng-click="bctrl.rejectBlog(blog.blog_id)" class="btn btn-danger btn-xs">Reject</button></td>
 				</tr>
 			</tbody>
 		</table>

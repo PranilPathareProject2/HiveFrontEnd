@@ -1,4 +1,39 @@
 <div ng-controller="BlogController as bctrl">
-<b>Title</b>: {{selectedblog.blog_title}}<br/>
-<b>Description</b>: {{selectedblog.blog_description}}
+	<div class="row">
+		<div class="col-sm-12">
+			<p><b>Title</b>: {{selectedblog.blog_title}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<p><b>Created by</b>: {{selectedblog.created_by}}</p>
+		</div>
+		<div class="col-sm-4">
+			<p><b>Posted On</b>: {{selectedblog.published_on | date : "dd/MM/y"}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<p>{{selectedblog.blog_description}}</p>
+		</div>	
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-12">
+		<h4>Leave a Comment:</h4>
+	      <form ng-submit="bctrl.submitBlogComment(selectedblog.blog_id)">
+	        <div class="form-group">
+	          <textarea class="form-control" rows="3" ng-model="bctrl.blogcomment.blog_comment" required></textarea>
+	        </div>
+	        <button type="submit" class="btn btn-success pull-right">Submit</button>
+	      </form>
+	     </div> 
+	</div>
+	<h4>Comments:</h4>
+	<hr>
+	<div ng-repeat="comment in allblogcommentsofblog | orderBy:'blog_comment_date':true">
+	<h4>{{comment.comment_by}} <small>{{comment.blog_comment_date | date : "dd/MM/y"}}</small></h4>
+          <p>{{comment.blog_comment}}</p>
+    <hr>      
+	</div>
 </div>

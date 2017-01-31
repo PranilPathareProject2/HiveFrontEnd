@@ -32,6 +32,24 @@ app.service('BlogService', [ '$http', '$q', '$rootScope', function($http, $q, $r
 			);
 		},
 		
+		addBlogComment: function(blogcomment, blog_id) {
+			return $http.post(url+'/addblogcomment/'+blog_id,blogcomment).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		allBlogCommentsOfBlog: function(blog_id) {
+			return $http.get(url+'/listblogcommentsbyblog/'+blog_id).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
 		getBlogToDisplay: function(blog_id) {
 			return $http.get(url+'/getblogtodisplay/'+blog_id).then(
 				function(response){
@@ -39,28 +57,28 @@ app.service('BlogService', [ '$http', '$q', '$rootScope', function($http, $q, $r
 				},
 				null
 			);
-		}
+		},
 		
-		/*addBlog: function(blog) {
+		acceptBlog: function(blog_id) {
+			return $http.put(url+'/acceptblog/'+blog_id).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		rejectBlog: function(blog_id, reason) {
+			return $http.put(url+'/rejectblog/'+blog_id+'/'+reason).then(
+				function(response){
+					return response.data;
+				},
+				null
+			);
+		},
+		
+		addBlog: function(blog) {
 			return $http.post(url+'/addblog/',blog).then(
-				function(response){
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		activateBlog: function(blog_id) {
-			return $http.put(url+'/activateblog/'+blog_id).then(
-				function(response){
-					return response.data;
-				},
-				null
-			);
-		},
-		
-		deactivateBlog: function(blog_id) {
-			return $http.put(url+'/deactivateblog/'+blog_id).then(
 				function(response){
 					return response.data;
 				},
@@ -84,6 +102,6 @@ app.service('BlogService', [ '$http', '$q', '$rootScope', function($http, $q, $r
 				},
 				null
 			);
-		}*/
+		}
 	};
 }]);
