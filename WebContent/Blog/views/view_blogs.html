@@ -1,22 +1,42 @@
 <div ng-controller="BlogController as bctrl">
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Created By</th>
-					<th>Published On</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="blog in allblogs | orderBy:'blog_id'">
-					<td>{{blog.blog_title}}</td>
-					<td>{{blog.created_by}}</td>
-					<td>{{blog.published_on | date : "dd/MM/y"}}</td>
-					<td><button ng-click="bctrl.getBlogToDisplay(blog.blog_id)" class="btn btn-warning btn-xs">View</button></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="row">
+		<div class="col-sm-8">
+		</div>
+		<div class="col-sm-4">
+			<label>Search A Blog:</label>
+			<input type="text" ng-model="searchtext" class="form-control" />
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-3 text-center">
+		<strong>Title</strong>
+		</div>
+		<div class="col-sm-3 text-center">
+		<strong>Created By</strong>
+		</div>
+		<div class="col-sm-3 text-center">
+		<strong>Published On</strong>
+		</div>
+		<div class="col-sm-3">
+		</div>
+	</div>
+	<hr>
+	<div ng-repeat="blog in allblogs | orderBy:'blog_id' | filter:searchtext">
+		<div class="row">
+			<div class="col-sm-3 text-center">
+			{{blog.blog_title}}
+			</div>
+			<div class="col-sm-3 text-center">
+			{{blog.created_by}}
+			</div>
+			<div class="col-sm-3 text-center">
+			{{blog.published_on | date : "dd/MM/y"}}
+			</div>
+			<div class="col-sm-3 text-center">
+			<button ng-click="bctrl.getBlogToDisplay(blog.blog_id)" class="btn btn-warning">View</button>
+			</div>
+		</div>
+		<hr>
 	</div>
 </div>

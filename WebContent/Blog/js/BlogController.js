@@ -46,26 +46,32 @@ app.controller('BlogController', [ '$scope', 'BlogService', '$rootScope', '$http
 	
 	self.allBlogsForUser = function() {
 		console.log("allBlogsForUser method in controller started");
-		BlogService
-			.allBlogsForUser()
-			.then(
-					function(bdata) {
-						if(bdata[0].errorMessage != undefined)	
-						{
-							alert(bdata[0].errorMessage);
-							$location.path("/createblog");
-							delete $rootScope.allblogsforuser;
-						}	
-						else
-						{	
-							$rootScope.allblogsforuser = bdata;
-							$location.path("/createblog");
-						}	
-					},	
-					function(errorresponse) {
-						console.error("Error while fetching blogs for a specific user");
-					}
-			);
+		console.log("$rootScope.loggedInUser"+$rootScope.loggedInUser);
+		if ($rootScope.loggedInUser == undefined || angular.equals($rootScope.loggedInUser, {})) {
+			alert("Please login to do this operation");
+			$location.path("/login");
+		}
+		else
+		{	
+			BlogService
+					.allBlogsForUser()
+					.then(
+							function(bdata) {
+
+								if (bdata[0].errorMessage != undefined) {
+									$location.path("/createblog");
+									alert(bdata[0].errorMessage);
+									delete $rootScope.allblogsforuser;
+								} else {
+									$rootScope.allblogsforuser = bdata;
+									$location.path("/createblog");
+								}
+							},
+							function(errorresponse) {
+								console
+										.error("Error while fetching blogs for a specific user");
+							});
+		}
 	};
 	
 	self.getBlogToDisplay = function(blog_id) {
