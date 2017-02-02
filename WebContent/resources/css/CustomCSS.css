@@ -145,6 +145,13 @@
   font-weight: 600;
 }
 
+/* for find a friend panel */
+.panel-warning > .panel-heading {
+  color: #FFE1B2;
+  background-color: #FFA10E;
+  border-color: #FFE1B2;
+}
+
 /* .dropdown:not(.open) > .dropdown-toggle:focus:not(:hover) {
   background-color: green !important;
 }
