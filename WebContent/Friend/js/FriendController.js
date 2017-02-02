@@ -8,6 +8,12 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 	
 	self.myFriends = function() {
 		console.log("myFriends method in controller started");
+		if ($rootScope.loggedInUser == undefined || angular.equals($rootScope.loggedInUser, {})) {
+			alert("Please login to do this operation");
+			$location.path("/login");
+		}
+		else
+		{
 		FriendService
 			.myFriends()
 			.then(
@@ -29,6 +35,7 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 						console.error("Error while fetching friends");
 					}
 			);
+		}
 	};
 		
 	self.addFriendRequest = function(friendusername) {
@@ -140,28 +147,35 @@ app.controller('FriendController', [ '$scope', 'FriendService', '$rootScope', '$
 	
 	self.getOnlineFriends = function() {
 		console.log("getOnlineFriends method in controller started");
-		FriendService
-			.getOnlineFriends()
-			.then(
-					function(fdata) {
-						
-						if(fdata[0].errorMessage != undefined)	
-						{
-							alert(fdata[0].errorMessage);
-							$location.path('/onlinefriends');
-							delete $rootScope.onlinefriends;
-						}	
-						else
-						{	
-							$rootScope.onlinefriends = fdata;
-							$location.path('/onlinefriends');
+		if ($rootScope.loggedInUser == undefined || angular.equals($rootScope.loggedInUser, {})) {
+			alert("Please login to do this operation");
+			$location.path("/login");
+		}
+		else
+		{
+			FriendService
+				.getOnlineFriends()
+				.then(
+						function(fdata) {
+							
+							if(fdata[0].errorMessage != undefined)	
+							{
+								alert(fdata[0].errorMessage);
+								$location.path('/onlinefriends');
+								delete $rootScope.onlinefriends;
+							}	
+							else
+							{	
+								$rootScope.onlinefriends = fdata;
+								$location.path('/onlinefriends');
+							}
+							
+						},
+						function(errorresponse) {
+							console.error("Error while fetching friends");
 						}
-						
-					},
-					function(errorresponse) {
-						console.error("Error while fetching friends");
-					}
-			);
+				);
+		}
 	};
 	
 }]);

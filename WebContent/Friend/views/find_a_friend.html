@@ -7,24 +7,37 @@
 			<input type="text" ng-model="searchtext" class="form-control" />
 		</div>
 	</div>
-	<div class="row">
-		<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th></th>
-					<th>Add friend</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="user in uctrl.users | filter: searchtext">
-					<td>{{user.username}}</td>
-					<td></td>
-					<td><button ng-controller="FriendController as fctrl" ng-click="fctrl.addFriendRequest(user.username)" class="btn btn-warning btn-xs">Add friend</button></td>
-				</tr>
-			</tbody>
-		</table>
+	<hr>
+	<!-- <div class="row">
+		<div class="col-sm-4 text-center">
+			<strong>Name</strong>
 		</div>
+		<div class="col-sm-4 text-center">
+		</div>
+		<div class="col-sm-4 text-center">
+			<strong>Add friend</strong>
+		</div>
+	</div>
+	<hr> -->
+	<div class="row">
+	<div ng-repeat="user in uctrl.users | filter: searchtext">
+			<div class="col-sm-3">
+				<div class="panel panel-warning">
+				    <div class="panel-heading">{{user.username}}</div>
+				    <div class="panel-body"><img alt="Profile Picture" ng-src="./resources/images/{{user.username}}.jpg" height="150px" width="150px" /></div>
+				    <div class="panel-footer"><button ng-controller="FriendController as fctrl" ng-click="fctrl.addFriendRequest(user.username)" class="btn btn-success btn-xs">Add friend</button></div>
+		  		</div>
+		  	</div>
+		 </div> 		
+		<!-- <div class="row">
+			<div class="col-sm-4 text-center">
+				{{user.username}}
+			</div>
+			<div class="col-sm-4 text-center">
+			</div>
+			<div class="col-sm-4 text-center">
+				<button ng-controller="FriendController as fctrl" ng-click="fctrl.addFriendRequest(user.username)" class="btn btn-warning btn-xs">Add friend</button>
+			</div>
+		</div> -->
 	</div>
 </div>	

@@ -1,13 +1,17 @@
 <div ng-controller="ChatForumController" class="container">
-	<form ng-submit="addMessage()" name="messageForm">
-		<input type="text" placeholder="Compose a new message..."
-			ng-model="message" />
-		<div class="info">
-			<span class="count" ng-bind="max - message.length"
-				ng-class="{danger: message.length > max}">140</span>
-			<button ng-disabled="message.length > max || message.length === 0">Send</button>
-		</div>
-	</form>
+	<div class="row">
+		<form ng-submit="addMessage()" name="messageForm">
+			<div class="col-sm-8">
+			<input type="text" class="form-control" placeholder="Compose a new message..." ng-model="message" />
+			</div>
+			<div class="col-sm-4">
+			<div class="info">
+				<span class="count" ng-bind="max - message.length" ng-class="{danger: message.length > max}">140</span>  characters remaining
+				<button class="btn btn-primary" ng-disabled="message.length > max || message.length === 0">Send</button>
+			</div>
+			</div>
+		</form>
+	</div>
 	<hr />
 	<p ng-repeat="message in messages | orderBy:'message_date':true"
 		class="message">

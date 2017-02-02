@@ -46,7 +46,7 @@ app.controller('BlogController', [ '$scope', 'BlogService', '$rootScope', '$http
 	
 	self.allBlogsForUser = function() {
 		console.log("allBlogsForUser method in controller started");
-		console.log("$rootScope.loggedInUser"+$rootScope.loggedInUser);
+		//console.log("$rootScope.loggedInUser"+$rootScope.loggedInUser);
 		if ($rootScope.loggedInUser == undefined || angular.equals($rootScope.loggedInUser, {})) {
 			alert("Please login to do this operation");
 			$location.path("/login");

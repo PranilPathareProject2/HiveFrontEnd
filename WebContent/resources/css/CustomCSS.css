@@ -139,6 +139,12 @@
 }
 /* For mobile version ends */
 
+/*for chating*/
+.info .danger {
+  color: #a94442;
+  font-weight: 600;
+}
+
 /* .dropdown:not(.open) > .dropdown-toggle:focus:not(:hover) {
   background-color: green !important;
 }
