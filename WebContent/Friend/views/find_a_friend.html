@@ -23,9 +23,9 @@
 	<div ng-repeat="user in uctrl.users | filter: searchtext">
 			<div class="col-sm-3">
 				<div class="panel panel-warning">
-				    <div class="panel-heading">{{user.username}}</div>
-				    <div class="panel-body"><img alt="Profile Picture" ng-src="./resources/images/{{user.username}}.jpg" height="150px" width="150px" /></div>
-				    <div class="panel-footer"><button ng-controller="FriendController as fctrl" ng-click="fctrl.addFriendRequest(user.username)" class="btn btn-success btn-xs">Add friend</button></div>
+				    <div class="panel-heading text-center">{{user.username}}</div>
+				    <div class="panel-body"><img alt="Profile Picture" ng-src="./resources/images/{{user.username}}.jpg" height="150px" width="150px" class="img-responsive" /></div>
+				    <div class="panel-footer text-center"><button ng-controller="FriendController as fctrl" ng-click="fctrl.addFriendRequest(user.username)" class="btn btn-warning btn-xs">Add friend</button></div>
 		  		</div>
 		  	</div>
 		 </div> 		

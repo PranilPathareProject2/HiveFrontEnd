@@ -1,3 +1,68 @@
-<div>
-	<p>In Create forum</p>
+<div ng-controller="ChatForumController as cfctrl">
+	<div class="jumbotron" ng-hide="showUpdateForm">
+			<h3 class="text-center">Create A Forum</h3>
+			<form name="chatforumform" ng-submit="" novalidate>
+				<div class="row">
+					<div class="form-group col-sm-8">
+						<label for="name">Name:</label>
+						<input type="text" id="name" name="name" class="form-control" placeholder="Enter Forum Name" required="required" ng-model="cfctrl.chatforum.chat_forum_name"/>
+						<span style="color: red;" ng-show="chatforumform.name.$dirty && chatforumform.name.$invalid && !chatforumform.$submitted">
+							<span ng-show="chatforumform.name.$error.required">Name is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="createdby">Created By:</label> 
+						<input type="text" id="createdby" name="createdby" class="form-control" value="{{loggedInUser}}" readonly="readonly" />
+					</div>
+				</div>
+				<div style="padding-top: 10px">
+					<input ng-disabled="chatforumform.$invalid" type="submit" value="Add Forum" class="btn btn-primary btn-block">
+				</div>
+			</form>
+		</div>
+		<div class="jumbotron" ng-show="showUpdateForm">
+			<h3 class="text-center">Update A Forum</h3>
+			<form name="chatforumform" ng-submit="" novalidate>
+				<div class="row">
+					<div class="form-group col-sm-8">
+						<label for="name">Name:</label>
+						<input type="text" id="name" name="name" class="form-control" placeholder="Enter Forum Name" required="required" ng-model="cfctrl.chatforum.chat_forum_name" value="{{cfctrl.chatforum.chat_forum_name}}" />
+						<span style="color: red;" ng-show="chatforumform.name.$dirty && chatforumform.name.$invalid && !chatforumform.$submitted">
+							<span ng-show="chatforumform.name.$error.required">Name is required</span>
+						</span>
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="createdby">Created By:</label> 
+						<input type="text" id="createdby" name="createdby" class="form-control" value="{{loggedInUser}}" readonly="readonly" />
+					</div>
+				</div>
+				<div style="padding-top: 10px">
+					<input ng-disabled="chatforumform.$invalid" type="submit" value="Update Forum" class="btn btn-primary btn-block">
+				</div>
+			</form>
+		</div>
+		<p>Your Forums:</p>
+		<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Created On</th>
+					<th>Status</th>
+					<th>Rejection Reason</th>
+					<th>Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat=" | orderBy:''">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

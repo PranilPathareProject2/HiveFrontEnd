@@ -167,3 +167,18 @@
 	display:inline-block;
     float: none;
 } */
+
+/* for find a friend panel */
+.img-responsive {
+	height: 150px;
+	width: 150px;
+    margin: 0 auto;
+    display: block;
+  	max-width: 100%;
+}
+
+.panel-warning > .panel-footer {
+  color: #FFA10E;
+  background-color: #FFE1B2;
+  border-color: #FFE1B2;
+}
