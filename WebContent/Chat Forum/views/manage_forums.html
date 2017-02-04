@@ -1,3 +1,24 @@
-<div>
- manage forum
- </div>
+<div ng-controller="ChatForumController as cfctrl">
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Created By</th>
+					<th>Status</th>
+					<th>Rejection Reason</th>
+					<th>Accept/Reject</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="chatforum in chatforums | orderBy:'chat_forum_id'">
+					<td>{{chatforum.chat_forum_name}}</td>
+					<td>{{chatforum.created_by}}</td>
+					<td>{{chatforum.status}}</td>
+					<td>{{chatforum.rejection_reason}}</td>
+					<td><button ng-show="chatforum.status == 'Rejected' || chatforum.status == 'New'" ng-click="cfctrl.acceptForum(chatforum.chat_forum_id)" class="btn btn-success btn-xs">Accept</button> <button ng-show="chatforum.status == 'Accepted' || chatforum.status == 'New'" ng-click="cfctrl.rejectForum(chatforum.chat_forum_id)" class="btn btn-danger btn-xs">Reject</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

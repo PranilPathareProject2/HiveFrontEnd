@@ -63,4 +63,18 @@ app.service("ChatForumService", function($q, $timeout) {
     
     initialize();
     return service;
+    
+    var url = "http://localhost:8081/HiveBackEnd";
+	
+	return {
+		addForum: function(chatforum) {
+			return $http.post(url+'/addforum',chatforum).then(
+				function(response){
+					response.data.created_date = new Date(response.data.created_date);
+					return response.data;
+				},
+				null
+			);
+		}
+	};
   });
