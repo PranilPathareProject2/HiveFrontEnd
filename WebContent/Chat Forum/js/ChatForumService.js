@@ -1,4 +1,4 @@
-app.service("ChatForumService", function($q, $timeout) {
+app.service("ChatForumService", function($q, $timeout, $http) {
     console.log("ChatForumService started...")
     var service = {};
     var listener = $q.defer();

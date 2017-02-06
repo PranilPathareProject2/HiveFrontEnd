@@ -18,7 +18,7 @@ app.controller("ChatForumController", function($scope, ChatForumService) {
   
   	self.addForum = function(chatforum) {
 		console.log("addForum method in controller started");
-		ChatService
+		ChatForumService
 			.addForum(chatforum)
 			.then(
 					function(cfdata) {

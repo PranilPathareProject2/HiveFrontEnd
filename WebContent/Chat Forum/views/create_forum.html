@@ -1,7 +1,7 @@
 <div ng-controller="ChatForumController as cfctrl">
 	<div class="jumbotron" ng-hide="showUpdateForm">
 			<h3 class="text-center">Create A Forum</h3>
-			<form name="chatforumform" ng-submit="" novalidate>
+			<form name="chatforumform" ng-submit="cfctrl.submitForumForm()" novalidate>
 				<div class="row">
 					<div class="form-group col-sm-8">
 						<label for="name">Name:</label>
@@ -54,7 +54,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat=" | orderBy:''">
+				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
