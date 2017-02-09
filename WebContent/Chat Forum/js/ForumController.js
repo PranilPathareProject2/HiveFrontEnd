@@ -4,6 +4,8 @@ app.controller('ForumController', [ '$scope', 'ForumService', '$rootScope', '$ht
 	
 	self.addForum = function(chatforum) {
 		console.log("addForum method in controller started");
+		chatforum.created_by=$rootScope.loggedInUser;
+		console.log("chatforum.created_by:"+chatforum.created_by);
 		ForumService
 			.addForum(chatforum)
 			.then(
